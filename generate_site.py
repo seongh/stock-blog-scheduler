@@ -2,6 +2,7 @@
 """
 GitHub Pages 사이트 생성기
 outputs/ 폴더의 마크다운 파일을 읽어 docs/ 폴더에 HTML 사이트를 생성합니다.
+TradingView 위젯(티커테이프·미니차트·경제달력) 포함
 """
 import re
 import shutil
@@ -29,7 +30,6 @@ def get_post_type(filename: str) -> dict:
 
 
 def extract_title(content: str, fallback: str) -> str:
-    """마크다운 첫 번째 # 제목 추출"""
     for line in content.splitlines():
         line = line.strip()
         if line.startswith("# "):
@@ -38,13 +38,11 @@ def extract_title(content: str, fallback: str) -> str:
 
 
 def md_to_html(content: str) -> str:
-    """마크다운 → HTML 변환"""
     if USE_MD_LIB:
         return md_lib.markdown(
             content,
             extensions=["tables", "fenced_code", "nl2br"],
         )
-    # 간단 fallback 변환
     lines = content.splitlines()
     result = []
     in_table = False
@@ -78,7 +76,152 @@ def md_to_html(content: str) -> str:
     return "\n".join(result)
 
 
-# ── HTML 템플릿 ─────────────────────────────────────────────────────────────
+# ── TradingView 위젯 ────────────────────────────────────────────────────────
+
+TV_TICKER = '''<div class="tradingview-widget-container tv-ticker-wrap">
+  <div class="tradingview-widget-container__widget"></div>
+  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+  {
+    "symbols": [
+      {"proName":"FOREXCOM:SPXUSD","title":"S&P 500"},
+      {"proName":"FOREXCOM:NSXUSD","title":"나스닥 100"},
+      {"proName":"DJ:DJI","title":"다우"},
+      {"description":"코스피","proName":"KRX:KOSPI"},
+      {"description":"코스닥","proName":"KRX:KOSDAQ"},
+      {"description":"달러/원","proName":"FX:USDKRW"},
+      {"description":"달러인덱스","proName":"TVC:DXY"},
+      {"description":"미 10년채","proName":"TVC:US10Y"},
+      {"description":"금","proName":"TVC:GOLD"},
+      {"description":"WTI","proName":"TVC:USOIL"},
+      {"description":"VIX","proName":"TVC:VIX"},
+      {"description":"비트코인","proName":"BITSTAMP:BTCUSD"}
+    ],
+    "showSymbolLogo": true,
+    "colorTheme": "light",
+    "isTransparent": false,
+    "displayMode": "adaptive",
+    "locale": "kr"
+  }
+  </script>
+</div>'''
+
+
+def _mini_chart(symbol: str, color: str) -> str:
+    return f'''<div class="tradingview-widget-container">
+    <div class="tradingview-widget-container__widget"></div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+    {{
+      "symbol": "{symbol}",
+      "width": "100%",
+      "height": 200,
+      "locale": "kr",
+      "dateRange": "1D",
+      "colorTheme": "light",
+      "trendLineColor": "{color}",
+      "underLineColor": "{color}33",
+      "underLineBottomColor": "rgba(255,255,255,0)",
+      "isTransparent": false,
+      "autosize": true,
+      "largeChartUrl": "https://www.tradingview.com/chart/?symbol={symbol.replace(":", "%3A")}"
+    }}
+    </script>
+  </div>'''
+
+
+# 포스트 타입별 차트 설정
+CHART_CONFIG = {
+    "미국증시": {
+        "title": "📊 미국 시장 실시간 차트",
+        "symbols": [
+            ("FOREXCOM:SPXUSD", "#2563eb"),
+            ("FOREXCOM:NSXUSD", "#7c3aed"),
+            ("TVC:DXY",         "#059669"),
+            ("TVC:US10Y",       "#dc2626"),
+            ("TVC:VIX",         "#d97706"),
+            ("TVC:GOLD",        "#f59e0b"),
+        ],
+        "calendar": True,
+    },
+    "TOP5": {
+        "title": "📊 한국 시장 실시간 차트",
+        "symbols": [
+            ("KRX:KOSPI",   "#2563eb"),
+            ("KRX:KOSDAQ",  "#7c3aed"),
+            ("FX:USDKRW",   "#059669"),
+            ("KRX:005930",  "#dc2626"),   # 삼성전자
+            ("KRX:000660",  "#d97706"),   # SK하이닉스
+            ("KRX:035420",  "#10b981"),   # NAVER
+        ],
+        "calendar": False,
+    },
+    "저녁": {
+        "title": "📊 마감 & 프리마켓 차트",
+        "symbols": [
+            ("KRX:KOSPI",       "#2563eb"),
+            ("FOREXCOM:SPXUSD", "#7c3aed"),
+            ("FX:USDKRW",       "#059669"),
+            ("TVC:US10Y",       "#dc2626"),
+            ("TVC:VIX",         "#d97706"),
+            ("TVC:USOIL",       "#78716c"),
+        ],
+        "calendar": True,
+    },
+    "default": {
+        "title": "📊 글로벌 시장 차트",
+        "symbols": [
+            ("FOREXCOM:SPXUSD", "#2563eb"),
+            ("KRX:KOSPI",       "#7c3aed"),
+            ("FX:USDKRW",       "#059669"),
+            ("TVC:DXY",         "#dc2626"),
+            ("TVC:VIX",         "#d97706"),
+            ("TVC:GOLD",        "#f59e0b"),
+        ],
+        "calendar": True,
+    },
+}
+
+TV_CALENDAR = '''<div class="tv-calendar-wrap">
+  <h2 class="section-label">📅 경제지표 캘린더</h2>
+  <div class="tradingview-widget-container">
+    <div class="tradingview-widget-container__widget"></div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-events.js" async>
+    {
+      "colorTheme": "light",
+      "isTransparent": false,
+      "width": "100%",
+      "height": 400,
+      "locale": "kr",
+      "importanceFilter": "0,1",
+      "countryFilter": "us,kr,jp,cn,eu"
+    }
+    </script>
+  </div>
+</div>'''
+
+
+def get_tv_blocks(filename: str) -> tuple[str, str]:
+    """(chart_html, calendar_html) 반환"""
+    key = "default"
+    for k in ("미국증시", "TOP5", "저녁"):
+        if k in filename:
+            key = k
+            break
+    cfg = CHART_CONFIG[key]
+
+    charts = "".join(
+        f'<div class="tv-chart-item">{_mini_chart(sym, color)}</div>'
+        for sym, color in cfg["symbols"]
+    )
+    chart_block = f'''<div class="tv-charts-wrap">
+  <h2 class="section-label">{cfg["title"]}</h2>
+  <div class="tv-charts-grid">{charts}</div>
+</div>'''
+
+    calendar_block = TV_CALENDAR if cfg["calendar"] else ""
+    return chart_block, calendar_block
+
+
+# ── CSS ─────────────────────────────────────────────────────────────────────
 
 CSS = """
 :root {
@@ -105,17 +248,23 @@ a:hover { text-decoration: underline; }
   background: var(--surface);
   border-bottom: 1px solid var(--border);
   padding: 0 24px;
-  position: sticky; top: 0; z-index: 10;
+  position: sticky; top: 0; z-index: 100;
 }
 .header-inner {
-  max-width: 860px; margin: 0 auto;
+  max-width: 1100px; margin: 0 auto;
   display: flex; align-items: center; gap: 16px;
-  height: 60px;
+  height: 56px;
 }
 .site-logo { font-size: 20px; font-weight: 700; color: var(--text); }
 .site-logo span { color: var(--accent); }
 
-/* ── 인덱스 ── */
+/* ── 티커 테이프 ── */
+.tv-ticker-wrap {
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+
+/* ── 인덱스 히어로 ── */
 .hero {
   background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%);
   color: #fff; padding: 48px 24px 40px;
@@ -130,7 +279,7 @@ a:hover { text-decoration: underline; }
 .stat-num { font-size: 26px; font-weight: 700; }
 .stat-label { font-size: 12px; opacity: 0.75; margin-top: 2px; }
 
-.container { max-width: 860px; margin: 0 auto; padding: 32px 24px; }
+.container { max-width: 1100px; margin: 0 auto; padding: 32px 24px; }
 
 /* ── 날짜 섹션 ── */
 .date-section { margin-bottom: 32px; }
@@ -180,7 +329,7 @@ a:hover { text-decoration: underline; }
 }
 .read-btn:hover { background: #1d4ed8; text-decoration: none; }
 
-/* ── 포스트 본문 ── */
+/* ── 포스트 헤더 ── */
 .post-header {
   background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%);
   color: #fff; padding: 40px 24px 32px;
@@ -193,7 +342,44 @@ a:hover { text-decoration: underline; }
   margin-top: 12px; font-size: 13px; opacity: .8;
   display: flex; gap: 16px; flex-wrap: wrap;
 }
-.article { max-width: 760px; margin: 0 auto; padding: 32px 24px 64px; }
+
+/* ── TradingView 차트 섹션 ── */
+.tv-charts-wrap {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 24px;
+}
+.section-label {
+  max-width: 1100px; margin: 0 auto 16px;
+  font-size: 17px; font-weight: 700; color: var(--text);
+  display: flex; align-items: center; gap: 8px;
+}
+.tv-charts-grid {
+  max-width: 1100px; margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.tv-chart-item {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+
+/* ── 경제달력 섹션 ── */
+.tv-calendar-wrap {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: 24px;
+  margin-top: 32px;
+}
+.tv-calendar-wrap .section-label {
+  margin-bottom: 16px;
+}
+
+/* ── 포스트 본문 ── */
+.article { max-width: 860px; margin: 0 auto; padding: 32px 24px 48px; }
 .article h1 { font-size: 22px; margin: 28px 0 10px; }
 .article h2 {
   font-size: 19px; margin: 32px 0 10px;
@@ -237,7 +423,12 @@ a:hover { text-decoration: underline; }
   padding: 24px; border-top: 1px solid var(--border);
   margin-top: 40px;
 }
+
+@media (max-width: 900px) {
+  .tv-charts-grid { grid-template-columns: repeat(2, 1fr); }
+}
 @media (max-width: 600px) {
+  .tv-charts-grid { grid-template-columns: 1fr; }
   .post-grid { grid-template-columns: 1fr; }
   .stats { gap: 20px; }
   .hero h1 { font-size: 22px; }
@@ -245,8 +436,9 @@ a:hover { text-decoration: underline; }
 """
 
 
+# ── HTML 렌더러 ──────────────────────────────────────────────────────────────
+
 def render_index(posts: list) -> str:
-    # 날짜별 그룹화
     from collections import defaultdict
     by_date = defaultdict(list)
     for p in posts:
@@ -299,6 +491,8 @@ def render_index(posts: list) -> str:
     </div>
   </header>
 
+  {TV_TICKER}
+
   <div class="hero">
     <h1>주식 시황 리포트</h1>
     <p>매일 아침·오후·저녁 자동 생성되는 증권사급 분석 블로그</p>
@@ -332,6 +526,7 @@ def render_index(posts: list) -> str:
 def render_post(title: str, date_str: str, content: str, filename: str) -> str:
     pt = get_post_type(filename)
     body_html = md_to_html(content)
+    chart_block, calendar_block = get_tv_blocks(filename)
 
     try:
         dt = datetime.strptime(date_str, "%Y-%m-%d")
@@ -355,8 +550,10 @@ def render_post(title: str, date_str: str, content: str, filename: str) -> str:
     </div>
   </header>
 
+  {TV_TICKER}
+
   <div class="post-header">
-    <div style="max-width:760px;margin:0 auto">
+    <div style="max-width:860px;margin:0 auto">
       <div class="breadcrumb">
         <a href="../index.html" style="color:#93c5fd">← 목록으로</a>
       </div>
@@ -368,9 +565,12 @@ def render_post(title: str, date_str: str, content: str, filename: str) -> str:
     </div>
   </div>
 
+  {chart_block}
+
   <div class="article">
     <a class="back-link" href="../index.html">← 전체 목록</a>
     {body_html}
+    {calendar_block}
   </div>
 
   <footer class="footer">
@@ -386,7 +586,6 @@ def generate_site():
     outputs_dir = Path("outputs")
     site_dir = Path("docs")
 
-    # docs/ 초기화
     if site_dir.exists():
         shutil.rmtree(site_dir)
     site_dir.mkdir()
@@ -394,7 +593,6 @@ def generate_site():
 
     posts = []
 
-    # outputs/YYYY-MM-DD/*.md 수집
     md_files = sorted(
         [f for f in outputs_dir.glob("**/*.md") if f.name != ".gitkeep"],
         key=lambda f: f.stat().st_mtime,
@@ -404,7 +602,7 @@ def generate_site():
     for md_file in md_files:
         content = md_file.read_text(encoding="utf-8")
         title = extract_title(content, md_file.stem)
-        date_str = md_file.parent.name  # 폴더명 = YYYY-MM-DD
+        date_str = md_file.parent.name
 
         html_filename = re.sub(r"[^\w가-힣-]", "_", md_file.stem) + ".html"
         html_path = site_dir / "posts" / html_filename
@@ -421,7 +619,6 @@ def generate_site():
 
         print(f"  ✅ {md_file.name} → posts/{html_filename}")
 
-    # 인덱스 생성
     index_html = render_index(posts)
     (site_dir / "index.html").write_text(index_html, encoding="utf-8")
 
