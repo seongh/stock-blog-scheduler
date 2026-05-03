@@ -1,0 +1,43 @@
+name: "🌅 주말 아침 - 주간 글로벌 시황"
+
+on:
+  schedule:
+    # 07:03 KST (Sat+Sun) = 22:03 UTC (Fri+Sat)
+    - cron: "3 22 * * 5,6"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "테스트 실행 (결과 커밋 안 함)"
+        type: boolean
+        default: false
+
+jobs:
+  run-blog:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: 저장소 체크아웃
+        uses: actions/checkout@v4
+
+      - name: Python 설정
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: 패키지 설치
+        run: pip install anthropic
+
+      - name: 블로그 작성 실행
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python run_task.py stock-blog-monday-morning
+
+      - name: 결과 커밋 & 푸시
+        if: ${{ !inputs.dry_run }}
+        run: |
+          git config user.name "Stock Blog Bot"
+          git config user.email "bot@noreply.github.com"
+          git add outputs/
+          git diff --staged --quiet || git commit -m "🌅 [주말 아침] 주간 글로벌 시황 $(date -d '9 hours' +'%Y-%m-%d')"
+          git push

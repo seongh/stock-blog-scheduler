@@ -1,0 +1,43 @@
+name: "📈 평일 아침 - 미국 증시 브리핑"
+
+on:
+  schedule:
+    # 07:01 KST (Mon-Fri) = 22:01 UTC (Sun-Thu)
+    - cron: "1 22 * * 0-4"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "테스트 실행 (결과 커밋 안 함)"
+        type: boolean
+        default: false
+
+jobs:
+  run-blog:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: 저장소 체크아웃
+        uses: actions/checkout@v4
+
+      - name: Python 설정
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: 패키지 설치
+        run: pip install anthropic
+
+      - name: 블로그 작성 실행
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python run_task.py stock-blog-morning
+
+      - name: 결과 커밋 & 푸시
+        if: ${{ !inputs.dry_run }}
+        run: |
+          git config user.name "Stock Blog Bot"
+          git config user.email "bot@noreply.github.com"
+          git add outputs/
+          git diff --staged --quiet || git commit -m "📈 [평일 아침] 미국 증시 브리핑 $(date -d '9 hours' +'%Y-%m-%d')"
+          git push

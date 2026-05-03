@@ -1,0 +1,62 @@
+name: "🌐 GitHub Pages 배포"
+
+on:
+  # 블로그 작성 워크플로우 완료 후 자동 실행
+  workflow_run:
+    workflows:
+      - "📈 평일 아침 - 미국 증시 브리핑"
+      - "☀️ 평일 오후 - 한국 증시 TOP5"
+      - "🌙 평일 저녁 - 한국 마감 & 미국 프리마켓"
+      - "🌅 주말 아침 - 주간 글로벌 시황"
+      - "☀️ 주말 오후 - 글로벌 동향 & 섹터 분석"
+      - "🌙 주말 저녁 - 다음주 투자 전략"
+    types: [completed]
+
+  # 수동 실행 (테스트 또는 강제 재배포)
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 동시 배포 방지
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: 저장소 체크아웃 (최신 커밋)
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Python 설정
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: markdown 라이브러리 설치
+        run: pip install markdown
+
+      - name: HTML 사이트 생성
+        run: python generate_site.py
+
+      - name: GitHub Pages 설정
+        uses: actions/configure-pages@v5
+
+      - name: docs/ 폴더 업로드
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "docs"
+
+      - name: 배포
+        id: deployment
+        uses: actions/deploy-pages@v4
