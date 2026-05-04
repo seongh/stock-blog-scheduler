@@ -34,7 +34,7 @@ jobs:
       - name: 블로그 작성 실행
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: python run_task.py stock-blog-monday-morning
+        run: python run_task.py stock-blog-weekend-morning
 
       - name: 결과 커밋 & 푸시
         if: ${{ !inputs.dry_run }}
@@ -42,5 +42,5 @@ jobs:
           git config user.name "Stock Blog Bot"
           git config user.email "bot@noreply.github.com"
           git add outputs/
-          git diff --staged --quiet || git commit -m "🌅 [주말 아침] 주간 글로벌 시황 $(date -d '9 hours' +'%Y-%m-%d')"
+          git diff --staged --quiet || git commit -m "🌅 [주말 아침] 주간 마무리 리포트 $(date -d '9 hours' +'%Y-%m-%d')"
           git push
