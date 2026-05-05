@@ -109,6 +109,13 @@ Bash sleep 대신 단순히 재시도하면 됩니다.
             time.sleep(60)
             continue
         except anthropic.APIError as e:
+            err_str = str(e)
+            # 크레딧 부족·인증 실패 등 재시도해도 해결 안 되는 오류는 즉시 종료
+            if "credit balance is too low" in err_str or "invalid_api_key" in err_str or "permission" in err_str.lower():
+                print(f"  ❌ 치명적 오류 (재시도 불가): {e}")
+                if "credit balance" in err_str:
+                    print("  💳 https://console.anthropic.com/settings/billing 에서 크레딧을 충전하세요.")
+                sys.exit(1)
             print(f"  ❌ API 오류: {e}")
             time.sleep(30)
             continue
