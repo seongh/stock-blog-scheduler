@@ -5,12 +5,12 @@ Stock Blog Scheduler - GitHub Actions Runner
 
 Usage: python run_task.py <task-name>
 Tasks:
-  stock-blog-morning          평일 아침 - 미국 증시 브리핑
-  stock-blog-noon             평일 오후 - 한국 증시 TOP5
-  stock-blog-evening          평일 저녁 - 한국 마감 & 미국 프리마켓
-  stock-blog-monday-morning   주말 아침 - 주간 글로벌 시황
-  stock-blog-monday-noon      주말 오후 - 글로벌 동향 & 섹터
-  stock-blog-monday-evening   주말 저녁 - 다음주 투자 전략
+  stock-blog-morning           평일 아침 - 미국 증시 브리핑
+  stock-blog-noon              평일 오후 - 한국 증시 TOP5
+  stock-blog-evening           평일 저녁 - 한국 마감 & 미국 프리마켓
+  stock-blog-weekend-morning   토일 아침 - 주간 마무리 리포트
+  stock-blog-weekend-noon      토일 오후 - 글로벌 동향 & 섹터 전략
+  stock-blog-weekend-evening   토일 저녁 - 다음 주 투자 전략
 """
 import anthropic
 import os
@@ -28,9 +28,9 @@ FILENAME_MAP = {
     "stock-blog-morning":          "미국증시_{date}.md",
     "stock-blog-noon":             "한국증시_TOP5_{date}.md",
     "stock-blog-evening":          "저녁시황_{date}.md",
-    "stock-blog-monday-morning":   "미국증시_{date}.md",
-    "stock-blog-monday-noon":      "한국증시_TOP5_{date}.md",
-    "stock-blog-monday-evening":   "저녁시황_{date}.md",
+    "stock-blog-weekend-morning":  "주간마무리_{date}.md",
+    "stock-blog-weekend-noon":     "주말시황_{date}.md",
+    "stock-blog-weekend-evening":  "주말저녁_{date}.md",
 }
 
 
@@ -188,6 +188,10 @@ def save_output(content: str, task_name: str, date_str: str) -> bool:
 
     size_kb = len(blog_content.encode("utf-8")) / 1024
     print(f"  💾 저장 완료: {out_path} ({size_kb:.1f} KB)")
+
+    # naver_post.py가 참조할 최신 파일 경로 기록
+    Path(".last_output").write_text(str(out_path), encoding="utf-8")
+
     return True
 
 
