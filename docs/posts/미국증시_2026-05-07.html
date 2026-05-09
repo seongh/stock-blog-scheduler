@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>📣 S&P 500·나스닥 또 다시 사상 최고치! AMD +18%·디즈니 +7%·이란평화협상 기대감에 시장 폭발 — 7,365·25,839 기록 갱신 — Stock Blog</title>
+  <style>
+:root {
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --border: #e2e8f0;
+  --text: #1e293b;
+  --muted: #64748b;
+  --accent: #2563eb;
+  --radius: 12px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ── 헤더 ── */
+.site-header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+  position: sticky; top: 0; z-index: 100;
+}
+.header-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: flex; align-items: center; gap: 16px;
+  height: 56px;
+}
+.site-logo { font-size: 20px; font-weight: 700; color: var(--text); }
+.site-logo span { color: var(--accent); }
+
+/* ── 티커 테이프 ── */
+.tv-ticker-wrap {
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+
+/* ── 인덱스 히어로 ── */
+.hero {
+  background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%);
+  color: #fff; padding: 48px 24px 40px;
+  text-align: center;
+}
+.hero h1 { font-size: 28px; font-weight: 800; margin-bottom: 8px; }
+.hero p { font-size: 15px; opacity: 0.85; }
+.stats {
+  display: flex; justify-content: center; gap: 32px; margin-top: 24px;
+}
+.stat { text-align: center; }
+.stat-num { font-size: 26px; font-weight: 700; }
+.stat-label { font-size: 12px; opacity: 0.75; margin-top: 2px; }
+
+.container { max-width: 1100px; margin: 0 auto; padding: 32px 24px; }
+
+/* ── 날짜 섹션 ── */
+.date-section { margin-bottom: 32px; }
+.date-heading {
+  font-size: 13px; font-weight: 600;
+  color: var(--muted); letter-spacing: .05em;
+  text-transform: uppercase; margin-bottom: 12px;
+  padding-bottom: 8px; border-bottom: 1px solid var(--border);
+}
+
+/* ── 포스트 카드 ── */
+.post-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+}
+.post-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  transition: box-shadow .15s, transform .15s;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.post-card:hover {
+  box-shadow: 0 4px 20px rgba(0,0,0,.08);
+  transform: translateY(-2px);
+}
+.post-type {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12px; font-weight: 600;
+  padding: 3px 10px; border-radius: 20px;
+  border: 1px solid; width: fit-content;
+}
+.post-title {
+  font-size: 14px; font-weight: 600;
+  color: var(--text); line-height: 1.4;
+}
+.post-meta { font-size: 12px; color: var(--muted); }
+.read-btn {
+  margin-top: auto;
+  display: inline-block;
+  background: var(--accent); color: #fff;
+  padding: 7px 16px; border-radius: 8px;
+  font-size: 13px; font-weight: 500;
+  text-align: center;
+}
+.read-btn:hover { background: #1d4ed8; text-decoration: none; }
+
+/* ── 포스트 헤더 ── */
+.post-header {
+  background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%);
+  color: #fff; padding: 40px 24px 32px;
+}
+.post-header .breadcrumb {
+  font-size: 13px; opacity: .75; margin-bottom: 12px;
+}
+.post-header h1 { font-size: 24px; font-weight: 800; line-height: 1.35; }
+.post-header .meta {
+  margin-top: 12px; font-size: 13px; opacity: .8;
+  display: flex; gap: 16px; flex-wrap: wrap;
+}
+
+/* ── TradingView 차트 섹션 ── */
+.tv-charts-wrap {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 24px;
+}
+.section-label {
+  max-width: 1100px; margin: 0 auto 16px;
+  font-size: 17px; font-weight: 700; color: var(--text);
+  display: flex; align-items: center; gap: 8px;
+}
+.tv-charts-grid {
+  max-width: 1100px; margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.tv-chart-item {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+
+/* ── 경제달력 섹션 ── */
+.tv-calendar-wrap {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: 24px;
+  margin-top: 32px;
+}
+.tv-calendar-wrap .section-label {
+  margin-bottom: 16px;
+}
+
+/* ── 포스트 본문 ── */
+.article { max-width: 860px; margin: 0 auto; padding: 32px 24px 48px; }
+.article h1 { font-size: 22px; margin: 28px 0 10px; }
+.article h2 {
+  font-size: 19px; margin: 32px 0 10px;
+  padding-bottom: 6px; border-bottom: 2px solid var(--accent);
+}
+.article h3 { font-size: 16px; margin: 20px 0 8px; color: #374151; }
+.article p { margin-bottom: 12px; }
+.article li { margin-left: 22px; margin-bottom: 4px; }
+.article table {
+  width: 100%; border-collapse: collapse;
+  margin: 16px 0; font-size: 14px;
+}
+.article th, .article td {
+  padding: 10px 14px;
+  border: 1px solid var(--border); text-align: left;
+}
+.article th { background: #f1f5f9; font-weight: 600; }
+.article tr:nth-child(even) { background: #f8fafc; }
+.article blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 10px 16px; margin: 16px 0;
+  background: #eff6ff; border-radius: 0 8px 8px 0;
+  color: #1e40af; font-size: 14px;
+}
+.article code {
+  background: #f1f5f9; padding: 2px 6px;
+  border-radius: 4px; font-size: 13px;
+}
+.article pre {
+  background: #1e293b; color: #e2e8f0;
+  padding: 16px; border-radius: 8px;
+  overflow-x: auto; margin: 16px 0;
+}
+.back-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  color: var(--accent); font-size: 14px; font-weight: 500;
+  margin-bottom: 24px;
+}
+.footer {
+  text-align: center; font-size: 12px; color: var(--muted);
+  padding: 24px; border-top: 1px solid var(--border);
+  margin-top: 40px;
+}
+
+@media (max-width: 900px) {
+  .tv-charts-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .tv-charts-grid { grid-template-columns: 1fr; }
+  .post-grid { grid-template-columns: 1fr; }
+  .stats { gap: 20px; }
+  .hero h1 { font-size: 22px; }
+}
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="site-logo" href="../index.html">📊 Stock<span>Blog</span></a>
+    </div>
+  </header>
+
+  <div class="tradingview-widget-container tv-ticker-wrap">
+  <div class="tradingview-widget-container__widget"></div>
+  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+  {
+    "symbols": [
+      {"proName":"FOREXCOM:SPXUSD","title":"S&P 500"},
+      {"proName":"FOREXCOM:NSXUSD","title":"나스닥 100"},
+      {"proName":"DJ:DJI","title":"다우"},
+      {"description":"한국(EWY)","proName":"NYSE:EWY"},
+      {"description":"원/달러","proName":"FX:USDKRW"},
+      {"description":"달러/원","proName":"FX:USDKRW"},
+      {"description":"달러인덱스","proName":"CAPITALCOM:DXY"},
+      {"description":"미 국채(TLT)","proName":"NASDAQ:TLT"},
+      {"description":"금","proName":"TVC:GOLD"},
+      {"description":"WTI","proName":"TVC:USOIL"},
+      {"description":"VIX","proName":"CAPITALCOM:VIX"},
+      {"description":"비트코인","proName":"BITSTAMP:BTCUSD"}
+    ],
+    "showSymbolLogo": true,
+    "colorTheme": "light",
+    "isTransparent": false,
+    "displayMode": "adaptive",
+    "locale": "kr"
+  }
+  </script>
+</div>
+
+  <div class="post-header">
+    <div style="max-width:860px;margin:0 auto">
+      <div class="breadcrumb">
+        <a href="../index.html" style="color:#93c5fd">← 목록으로</a>
+      </div>
+      <h1>📣 S&P 500·나스닥 또 다시 사상 최고치! AMD +18%·디즈니 +7%·이란평화협상 기대감에 시장 폭발 — 7,365·25,839 기록 갱신</h1>
+      <div class="meta">
+        <span>🌅 모닝 리포트</span>
+        <span>📅 2026년 5월 7일 (목)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="tv-charts-wrap">
+  <h2 class="section-label">📊 미국 시장 실시간 차트</h2>
+  <div class="tv-charts-grid"><div class="tv-chart-item"><div class="tradingview-widget-container">
+    <div class="tradingview-widget-container__widget"></div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+    {
+      "symbol": "FOREXCOM:SPXUSD",
+      "width": "100%",
+      "height": 200,
+      "locale": "kr",
+      "dateRange": "1D",
+      "colorTheme": "light",
+      "trendLineColor": "#2563eb",
+      "underLineColor": "#2563eb33",
+      "underLineBottomColor": "rgba(255,255,255,0)",
+      "isTransparent": false,
+      "autosize": true,
+      "largeChartUrl": "https://www.tradingview.com/chart/?symbol=FOREXCOM%3ASPXUSD"
+    }
+    </script>
+  </div></div><div class="tv-chart-item"><div class="tradingview-widget-container">
+    <div class="tradingview-widget-container__widget"></div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+    {
+      "symbol": "FOREXCOM:NSXUSD",
+      "width": "100%",
+      "height": 200,
+      "locale": "kr",
+      "dateRange": "1D",
+      "colorTheme": "light",
+      "trendLineColor": "#7c3aed",
+      "underLineColor": "#7c3aed33",
+      "underLineBottomColor": "rgba(255,255,255,0)",
+      "isTransparent": false,
+      "autosize": true,
+      "largeChartUrl": "https://www.tradingview.com/chart/?symbol=FOREXCOM%3ANSXUSD"
+    }
+    </script>
+  </div></div><div class="tv-chart-item"><div class="tradingview-widget-container">
+    <div class="tradingview-widget-container__widget"></div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+    {
+      "symbol": "CAPITALCOM:DXY",
+      "width": "100%",
+      "height": 200,
+      "locale": "kr",
+      "dateRange": "1D",
+      "colorTheme": "light",
+      "trendLineColor": "#059669",
+      "underLineColor": "#05966933",
+      "underLineBottomColor": "rgba(255,255,255,0)",
+      "isTransparent": false,
+      "autosize": true,
+      "largeChartUrl": "https://www.tradingview.com/chart/?symbol=CAPITALCOM%3ADXY"
+    }
+    </script>
+  </div></div><div class="tv-chart-item"><div class="tradingview-widget-container">
+    <div class="tradingview-widget-container__widget"></div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+    {
+      "symbol": "NASDAQ:TLT",
+      "width": "100%",
+      "height": 200,
+      "locale": "kr",
+      "dateRange": "1D",
+      "colorTheme": "light",
+      "trendLineColor": "#dc2626",
+      "underLineColor": "#dc262633",
+      "underLineBottomColor": "rgba(255,255,255,0)",
+      "isTransparent": false,
+      "autosize": true,
+      "largeChartUrl": "https://www.tradingview.com/chart/?symbol=NASDAQ%3ATLT"
+    }
+    </script>
+  </div></div><div class="tv-chart-item"><div class="tradingview-widget-container">
+    <div class="tradingview-widget-container__widget"></div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+    {
+      "symbol": "CAPITALCOM:VIX",
+      "width": "100%",
+      "height": 200,
+      "locale": "kr",
+      "dateRange": "1D",
+      "colorTheme": "light",
+      "trendLineColor": "#d97706",
+      "underLineColor": "#d9770633",
+      "underLineBottomColor": "rgba(255,255,255,0)",
+      "isTransparent": false,
+      "autosize": true,
+      "largeChartUrl": "https://www.tradingview.com/chart/?symbol=CAPITALCOM%3AVIX"
+    }
+    </script>
+  </div></div><div class="tv-chart-item"><div class="tradingview-widget-container">
+    <div class="tradingview-widget-container__widget"></div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+    {
+      "symbol": "TVC:GOLD",
+      "width": "100%",
+      "height": 200,
+      "locale": "kr",
+      "dateRange": "1D",
+      "colorTheme": "light",
+      "trendLineColor": "#f59e0b",
+      "underLineColor": "#f59e0b33",
+      "underLineBottomColor": "rgba(255,255,255,0)",
+      "isTransparent": false,
+      "autosize": true,
+      "largeChartUrl": "https://www.tradingview.com/chart/?symbol=TVC%3AGOLD"
+    }
+    </script>
+  </div></div></div>
+</div>
+
+  <div class="article">
+    <a class="back-link" href="../index.html">← 전체 목록</a>
+    <h1>주식 #투자 #재테크 #미국주식 #한국주식 #코스피 #나스닥 #AMD #반도체 #AI주식 #엔비디아 #애플 #인텔 #ARM #디즈니 #우버 #이란협상 #증시 #주식투자 #경제 #급등 #주목종목 #실적발표 #금리 #달러 #미중갈등 #투자전략 #주식정보 #재테크정보 #오늘주식 #증시전망</h1>
+<hr />
+<h1>📣 S&amp;P 500·나스닥 또 다시 사상 최고치! AMD +18%·디즈니 +7%·이란평화협상 기대감에 시장 폭발 — 7,365·25,839 기록 갱신</h1>
+<p><strong>2026년 05월 07일 (목요일) | 모닝 리포트 — 미국 증시 시황</strong></p>
+<p>5월 6일(수) 뉴욕증시는 <strong>미·이란 평화협상 기대감</strong>과 <strong>AMD·디즈니·우버의 잇단 어닝 서프라이즈</strong>가 맞물리며 3대 지수 모두 사상 최고치를 경신했습니다. S&amp;P 500은 7,365p, 나스닥은 25,839p로 마감하며 다우도 49,910p까지 올라 50,000p 돌파를 목전에 뒀습니다. 오늘 한국 시간으로 오후 9시 30분에는 이번 주 최대 이벤트인 <strong>4월 비농업 고용지표(NFP)</strong> 발표가 예정되어 있으며, 시장 예상치(~60K)를 어떻게 뚫느냐에 따라 오늘 변동성이 다시 확대될 수 있습니다.</p>
+<hr />
+<h2>📈 미국 증시 마감 데이터 (5월 6일 기준)</h2>
+<p>5월 6일(수) 뉴욕 주식시장은 S&amp;P 500이 1.46% 상승한 7,365.12p로 마감하며, 나스닥 컴포지트는 2.02% 오른 25,838.94p로 새 사상 최고치를 기록했습니다. 다우존스 산업평균지수는 612.34포인트(+1.24%) 상승하여 49,910.59p에 마쳤습니다.</p>
+<table>
+<thead>
+<tr>
+<th>지수</th>
+<th>종가</th>
+<th>등락</th>
+<th>등락률</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S&amp;P 500</td>
+<td>7,365.12</td>
+<td>+105.90</td>
+<td>+1.46%</td>
+</tr>
+<tr>
+<td>NASDAQ</td>
+<td>25,838.94</td>
+<td>+512.81</td>
+<td>+2.02%</td>
+</tr>
+<tr>
+<td>Dow Jones</td>
+<td>49,910.59</td>
+<td>+612.34</td>
+<td>+1.24%</td>
+</tr>
+<tr>
+<td>Russell 2000</td>
+<td>2,888.24</td>
+<td>+43.26</td>
+<td>+1.52%</td>
+</tr>
+<tr>
+<td>VIX</td>
+<td>17.45</td>
+<td>-0.84</td>
+<td>-4.59%</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>※ SOX(필라델피아 반도체 지수): AMD 18%↑, ARM 13%↑, SMCI 15%↑ 등 반도체 섹터 전면 강세</p>
+</blockquote>
+<p><strong>시장 총평:</strong></p>
+<p>수요일 주가 상승을 이끈 핵심 동력은 미국과 이란이 전쟁 종식 협상에 근접했다는 보도였습니다. S&amp;P 500 11개 섹터 중 에너지와 유틸리티를 제외한 9개 섹터가 상승 마감했으며, 산업재가 +2.7%로 가장 강했고, 정보기술 +2.2%, 소재 +2.1%가 뒤를 이었습니다. 에너지는 -4.2%, 유틸리티는 -1.2% 하락했습니다.</p>
+<p>S&amp;P 500 내 상승종목 대 하락종목 비율은 1.7 대 1로 상승이 우세했으며, 총 거래량은 161억 주로 최근 20거래일 평균(177억 주)보다는 다소 낮은 수준이었습니다.</p>
+<p>AMD는 프리마켓에서 18% 급등하며 어닝 서프라이즈를 주도했고, 슈퍼마이크로컴퓨터(SMCI)는 AI 서버 이익 추정치를 넘어서며 15.49% 급등했습니다. 어닝과 지정학적 낙관론이 동시에 불거지면서 시장은 "bull run"이 계속될 수 있다는 신호를 강하게 발신했습니다.</p>
+<hr />
+<h2>💵 금리·채권 현황</h2>
+<table>
+<thead>
+<tr>
+<th>지표</th>
+<th>현재</th>
+<th>전일 대비</th>
+<th>의미</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>美 2년 국채 금리</td>
+<td>3.88%</td>
+<td>-7bp</td>
+<td>단기 금리 하락, 안도 심리</td>
+</tr>
+<tr>
+<td>美 10년 국채 금리</td>
+<td>4.38%</td>
+<td>-6.8bp</td>
+<td>인플레이션 우려 완화</td>
+</tr>
+<tr>
+<td>장단기 스프레드 (10Y-2Y)</td>
+<td>+0.50%p</td>
+<td>정상화</td>
+<td>경기침체 우려 해소</td>
+</tr>
+<tr>
+<td>Fed 기준금리</td>
+<td>3.50~3.75%</td>
+<td>동결</td>
+<td>3회 연속 동결</td>
+</tr>
+</tbody>
+</table>
+<p>10년물 국채 금리는 워싱턴-테헤란 간 잠재적 합의 낙관론이 높아지면서 약 5bp 하락한 4.38% 수준까지 내려왔습니다. 국방장관 헤그세스는 1개월 전 맺어진 휴전이 여전히 유지 중임을 밝혔고, 국무장관 루비오는 공세 작전 종료를 선언했으며, 트럼프 대통령은 호르무즈 해협 내 억류 선박 지원을 위한 미국 주도 작전을 잠시 중단한다고 발표했습니다.</p>
+<p><strong>채권시장 해석:</strong><br />
+채권 시장에서는 국채 수익률이 하락했는데, 에너지 가격 하락이 단기 인플레이션 우려를 완화시켜 채권 가격을 지지했습니다. 2년물 3.88% vs 10년물 4.38%로 스프레드가 +50bp 정상화 구간에 진입한 것은 성장주에 우호적인 신호입니다. 단기금리가 장기금리보다 낮아진 구조는 금리 인하 기대가 서서히 되살아나고 있다는 뜻으로, 성장주·기술주 밸류에이션에 긍정적으로 작용합니다.</p>
+<p>연준은 4월 회의에서 기준금리를 3.5~3.75% 목표 범위로 3회 연속 동결했는데, 유가 상승과 인플레이션 압력에도 불구하고 노동시장과 경제 펀더멘털은 견조한 상황입니다. 이번 결정은 만장일치가 아니었으며, 스티브 미란 이사는 25bp 인하를 주장했고 세 명의 이사는 "완화 편향(easing bias)" 문구를 성명에 포함하는 데 반대해, 1992년 이후 처음으로 4명의 이사가 반대한 역사적인 회의가 됐습니다.</p>
+<hr />
+<h2>🌍 달러·환율</h2>
+<table>
+<thead>
+<tr>
+<th>지표</th>
+<th>현재</th>
+<th>전일 대비</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>달러인덱스 (DXY)</td>
+<td>98.07</td>
+<td>-0.37%</td>
+</tr>
+<tr>
+<td>원/달러</td>
+<td>1,451.71</td>
+<td>-1.17%</td>
+</tr>
+<tr>
+<td>엔/달러</td>
+<td>약 148 수준</td>
+<td>소폭 약세</td>
+</tr>
+<tr>
+<td>유로/달러</td>
+<td>1.1701</td>
+<td>+0.04%</td>
+</tr>
+</tbody>
+</table>
+<p>원/달러 환율은 5월 6일 1,451.71원까지 하락해 전일 대비 1.17% 원화 강세를 보였습니다. 지난 한 달간 원화는 3.00% 강세를 기록했지만, 12개월 기준으로는 여전히 3.81% 약세를 유지하고 있습니다.</p>
+<p>원화는 달러당 1,456원 수준까지 회복해 2개월여 만에 최강을 나타냈는데, 이는 트럼프 대통령이 이란과 협상 진행 중 호르무즈 해협 해상 작전을 잠정 중단하겠다고 시사해 지정학적 리스크를 낮춘 데다 글로벌 위험 선호(Risk-on) 심리가 개선되면서 외국인 투자 자금이 국내 주식 시장으로 유입됐기 때문입니다.</p>
+<p><strong>환율 해석:</strong><br />
+DXY 98선 아래로 내려가는 달러 약세는 외국인의 한국 주식 매수 동기를 높이는 호재입니다. 원화 강세 + 위험선호 동시 진행은 코스피 외국인 순매수 흐름을 강화할 가능성이 높고, 반도체·2차전지 등 달러 매출 비중이 높은 대형 수출주에는 실적 모멘텀 면에서 단기적 헤드라인 역풍이 될 수도 있으나, 시장 전체 분위기는 긍정적입니다.</p>
+<hr />
+<h2>😱 VIX·시장 심리</h2>
+<table>
+<thead>
+<tr>
+<th>지표</th>
+<th>현재 값</th>
+<th>해석</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VIX (공포지수)</td>
+<td>17.45</td>
+<td>20 이하=안정 — 경계심 해제</td>
+</tr>
+<tr>
+<td>Fear &amp; Greed Index</td>
+<td><strong>Greed 구간</strong> 추정 (65~70)</td>
+<td>탐욕 초입</td>
+</tr>
+</tbody>
+</table>
+<p>VIX(CBOE 변동성 지수)는 전일 대비 4.98% 하락한 17.38 수준까지 내려왔습니다. VIX 17선은 시장이 '공포' 상태에서 완전히 벗어나 '안도' 구간에 진입했음을 의미합니다.</p>
+<p><strong>시장 심리 분석:</strong><br />
+VIX 20 이하는 일반적으로 안정적인 강세장 환경으로 간주됩니다. 4월 한달만 해도 S&amp;P 500과 나스닥이 2020년 팬데믹 반등 이후 최강의 월간 성과를 기록한 이후, 5월에도 하방 리스크보다 상방 모멘텀이 우세한 상황입니다. 다만 이란 협상 불확실성과 NFP 결과에 따라 단기 변동성은 재확대될 수 있음을 유의해야 합니다.</p>
+<hr />
+<h2>📅 이번 주 경제지표 캘린더</h2>
+<table>
+<thead>
+<tr>
+<th>날짜</th>
+<th>지표</th>
+<th>예상치</th>
+<th>이전치</th>
+<th>중요도</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5/6 (수)</td>
+<td>ADP 민간고용 (4월)</td>
+<td>—</td>
+<td>178K</td>
+<td>⭐⭐⭐</td>
+</tr>
+<tr>
+<td><strong>5/7 (목)</strong></td>
+<td><strong>비농업 고용(NFP, 4월)</strong></td>
+<td><strong>~60K</strong></td>
+<td><strong>178K</strong></td>
+<td>⭐⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td>5/7 (목)</td>
+<td>실업률</td>
+<td>4.4% 유지</td>
+<td>4.4%</td>
+<td>⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td>5/7 (목)</td>
+<td>시간당 임금 (MoM)</td>
+<td>+0.3%</td>
+<td>+0.4%</td>
+<td>⭐⭐⭐</td>
+</tr>
+<tr>
+<td>5/8 (금)</td>
+<td>FOMC 의사록 / 향후 연준 방향성</td>
+<td>—</td>
+<td>—</td>
+<td>⭐⭐⭐</td>
+</tr>
+</tbody>
+</table>
+<p>이번 주 가장 중요한 지표는 5월 7일(오늘) 저녁 발표될 NFP로, 시장 전망은 60,000~73,000건 내외의 큰 폭 둔화를 예상합니다. 약한 NFP 수치는 금리 인하 기대를 자극해 주식에 강세 요인이 되지만, 강한 수치는 '더 높은 금리 장기화'를 재점화할 수 있습니다.</p>
+<p><strong>핵심 지표 전망:</strong><br />
+- <strong>NFP(비농업 고용)</strong>: 3월 178K에서 60K로 급감 예상. 미국 경제는 4월에 약 60,000건의 신규 일자리를 추가한 것으로 전망되며, 이는 3월 178K에서 급격한 둔화입니다. 이란 전쟁 여파와 에너지 가격 상승의 영향이 주로 반영될 것으로 보입니다.<br />
+- <strong>실업률</strong>: 4.4% 유지 예상. 금리 결정에 있어 핵심 참고 지표로 작용.<br />
+- <strong>임금 상승률</strong>: YoY 3.7~3.8% 수준 예상. 연준의 인플레이션 모니터링에서 핵심 변수.</p>
+<hr />
+<h2>🏭 섹터별 동향</h2>
+<h3>🖥️ 기술·AI</h3>
+<p>S&amp;P 500의 2026년 랠리를 이끄는 거의 모든 종목이 AI 인프라 테마에 연결되어 있습니다. 알파벳(GOOGL)이 올해 지수 수익률에 가장 큰 단일 기여를 하고 있으며, 혼자서 S&amp;P 500 수익률의 20% 이상을 담당하고 있습니다.</p>
+<p>매그니피센트7 주가(5월 5~6일 기준):</p>
+<table>
+<thead>
+<tr>
+<th>종목</th>
+<th>5/5 종가</th>
+<th>변동</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AAPL</td>
+<td>$284.20</td>
+<td>+2.7%</td>
+</tr>
+<tr>
+<td>AMZN</td>
+<td>$273.71</td>
+<td>+0.6%</td>
+</tr>
+<tr>
+<td>GOOG</td>
+<td>$384.27</td>
+<td>+1.2%</td>
+</tr>
+<tr>
+<td>META</td>
+<td>$605.00</td>
+<td>-0.9%</td>
+</tr>
+<tr>
+<td>MSFT</td>
+<td>$411.39</td>
+<td>-0.5%</td>
+</tr>
+<tr>
+<td>NVDA</td>
+<td>$196.45</td>
+<td>-1.0%</td>
+</tr>
+<tr>
+<td>TSLA</td>
+<td>$389.76</td>
+<td>-0.7%</td>
+</tr>
+</tbody>
+</table>
+<p>애플은 AI 사이리(Siri)의 전면 개편이 올해 WWDC(6월 개발자 대회)에서 공개될 것이라고 임원들이 확인했으며, 주가는 소폭 하락해 282.50달러를 기록했습니다.</p>
+<h3>🔬 반도체 (SOX)</h3>
+<p>수요일 반도체 섹터는 단연 시장의 주인공이었습니다.</p>
+<p>AMD는 애널리스트 예상치를 웃도는 1분기 실적을 장 마감 후 발표했으며, 2분기 매출 가이던스도 시장 전망을 상회하면서 주가는 수요일 18% 이상 급등했습니다. 주당 이익 1.37달러, 매출 102.5억 달러를 기록했습니다.</p>
+<p>AMD의 1분기 매출은 YoY 38% 증가한 102.5억 달러로 애널리스트 예상치인 98.9억 달러를 초과했으며, 데이터센터 매출은 57% 급증한 58억 달러를 기록했습니다. 2분기 가이던스로 112억 달러를 제시해 컨센서스를 크게 웃돌았습니다.</p>
+<p>AMD CEO 리사 수는 "데이터센터 AI 매출이 내년에 수백억 달러에 달하고, 향후 몇 년 안에 80% 이상의 장기 성장 목표를 초과할 것"이라고 자신감을 밝혔습니다.</p>
+<p>오픈AI와 메타 모두 AMD의 랙 스케일 AI 시스템 'Helios' 납품 계약을 체결했으며, 메타는 2월 AMD와 맺은 다년간 계약에서 AI 데이터센터용 GPU 최대 6 기가와트를 배포하겠다고 발표한 바 있습니다.</p>
+<p><strong>ARM Holdings (ARM):</strong><br />
+ARM은 4분기(FY26) 실적으로 매출 14.9억 달러(예상 14.7억 달러)와 EPS 0.60달러(예상 0.58달러)를 기록하며 모두 서프라이즈를 냈습니다. ARM 주가는 AMD의 강력한 실적에 따른 CPU 수요 급증 기대에 힘입어 수요일 장중 13.58% 급등했습니다.</p>
+<p><strong>인텔 (INTC):</strong><br />
+인텔은 애플이 미국 내 디바이스 주요 프로세서 생산을 위해 인텔과 삼성전자 모두와 협의 중이라는 블룸버그 보도 이후 13% 가까이 급등했으며, 4월 한달 동안만 무려 114% 상승했습니다.</p>
+<p>AMD가 어닝 비트 후 20% 급등했으며, 슈퍼마이크로컴퓨터는 강력한 실적에 15% 상승했습니다. 엔비디아, 샌디스크, 마이크론, 인텔도 모두 2% 이상 동반 상승했습니다.</p>
+<h3>🏦 금융</h3>
+<p>시장 전반을 뒷받침하는 것은 강력한 기업 실적과 탄탄한 경제 펀더멘털입니다. S&amp;P 500 기업의 약 70%가 이미 실적을 발표했으며, 이번 어닝 시즌이 우수한 결과를 이어가고 있습니다.</p>
+<p>금융 섹터는 이란 협상 낙관론에 따른 경기침체 리스크 감소와 금리 안정화 기대로 전반적으로 상승했습니다. ServiceNow(+7.3%), Oracle(+4.2%), Ares Management(+5.9%) 등 광의의 금융·소프트웨어 서비스 기업들도 AI 우려 해소와 함께 일부 연초 손실을 회복했습니다(아직 연간 기준으로는 12~39% 하락 중).</p>
+<h3>⚡ 에너지</h3>
+<p>에너지 섹터는 수요일의 유일한 대형 하락 섹터였습니다.</p>
+<p>WTI 원유 선물은 수요일 9% 이상 급락해 배럴당 93달러 아래로 내려왔습니다. 이는 전일의 3.9% 하락에 이어 2거래일 연속 급락한 것으로, 미국과 이란이 분쟁 종식 협상에 가까워지고 있다는 보도가 배경입니다.</p>
+<p>WTI 선물은 최종적으로 7.03% 급락해 배럴당 95.08달러에 마쳤고, 브렌트유도 7.83% 하락한 101.27달러로 마감했습니다.</p>
+<p>정유·에너지 주(엑슨모빌, 셰브론, 데본에너지 등)는 전반적으로 4~6% 하락했습니다. 단, 이란 분쟁이 완전히 해결되더라도 에너지 비용 상승이 이미 세계 수요를 잠식하기 시작했고, 호르무즈 해협이 재개방되더라도 선박 및 무역 흐름의 완전 회복은 수 주가 소요될 것으로 예상됩니다.</p>
+<h3>🎬 소비재·미디어</h3>
+<p><strong>디즈니 (DIS):</strong><br />
+디즈니는 2분기 매출 251.7억 달러를 발표하며 월가 예상치를 상회했으며, 영업이익도 회사 가이던스를 초과했습니다.</p>
+<p>디즈니는 2026 회계연도 가이던스로 조정 이익 약 12% 성장을 유지했으며, 자사주 매입 목표도 기존 70억 달러에서 80억 달러로 상향했습니다.</p>
+<p>디즈니는 스트리밍과 파크 사업의 강세로 월가 기대치를 상회했으며, 테마파크·크루즈를 포함한 경험 부문은 분기 매출 95억 달러(YoY +7%)를 기록했습니다.</p>
+<p><strong>우버 (UBER):</strong><br />
+우버 주가는 1분기 실적 발표 후 10% 급등했는데, 매출은 예상을 소폭 하회했지만 2분기 총 예약 가이던스가 시장 기대를 초과했기 때문입니다. 매출은 YoY 14% 성장한 132억 달러였습니다.</p>
+<p>총 예약은 YoY 25% 증가한 537억 달러로 애널리스트 예상(528억 달러)을 상회했으며, 2분기 가이던스로는 562.5~577.5억 달러를 제시해 컨센서스(561.7억 달러)를 넘어섰습니다.</p>
+<p>우버와 디즈니 모두 소비 지출의 의외의 견조함을 보여주며, 가솔린 가격이 전국 평균 4.54달러(갤런당)까지 치솟았음에도 소비자 지출이 여행·오락·배달에서 지속되고 있음을 입증했습니다.</p>
+<h3>💊 헬스케어·바이오</h3>
+<p>화이자(PFE)는 1분기 2026년 EPS 0.75달러를 발표해 컨센서스 0.71달러를 상회했으며, 현재 잭스 3등급(Hold)을 유지하고 있습니다.</p>
+<p>헬스케어 섹터는 전반적으로 소폭 상승하며 방어적 특성을 보였지만, 강세장 분위기에서의 주도는 기술·AI 섹터에 내줬습니다.</p>
+<hr />
+<h2>🔥 오늘의 주목 종목</h2>
+<h3>📈 당일 상승률 TOP 종목</h3>
+<table>
+<thead>
+<tr>
+<th>종목</th>
+<th>등락률</th>
+<th>상승 이유</th>
+<th>지속 가능성</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AMD</td>
+<td>+18.37%</td>
+<td>Q1 EPS $1.37 비트, DC 매출 +57%, Q2 가이던스 $11.2B↑</td>
+<td>⭐⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td>SMCI</td>
+<td>+15.49%</td>
+<td>AI 서버 Q1 이익 서프라이즈</td>
+<td>⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td>ARM</td>
+<td>+13.58%</td>
+<td>AMD 실적 호조 연계 상승 + Q4 자체 실적 비트</td>
+<td>⭐⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td>INTC</td>
+<td>+12.9%</td>
+<td>애플 칩 공급망 편입 협상 보도</td>
+<td>⭐⭐⭐</td>
+</tr>
+<tr>
+<td>DIS</td>
+<td>+6.92%</td>
+<td>Q2 실적 서프라이즈, 스트리밍·파크 동반 성장</td>
+<td>⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td>UBER</td>
+<td>+10%</td>
+<td>Q2 예약 가이던스 서프라이즈</td>
+<td>⭐⭐⭐⭐</td>
+</tr>
+</tbody>
+</table>
+<h3>🏭 섹터별 핵심주 &amp; 최신 뉴스</h3>
+<p><strong>📌 AMD — AI 인프라의 진짜 2인자 등극</strong></p>
+<p>AMD 주가는 지난 1년간 3배 이상 올랐고, 2026년에만 66%를 상승했습니다. 엔비디아에 비해 AI 가속기 GPU 시장에서 뒤처졌지만, 최근 시장이 데이터센터 기회가 복수의 플레이어에게 충분히 크다는 인식을 갖기 시작했습니다. AMD는 CPU 시장의 전통 강자로서 에이전틱 AI 시대의 추론(inference) 수요 확대 수혜를 누리고 있습니다.</p>
+<p>전략적 하이라이트로는 메타가 AMD Instinct GPU 최대 6GW 배포 계획 중에 커스텀 MI450를 포함한다고 밝혔으며, AWS·구글 클라우드·마이크로소프트 애저·텐센트 클라우드 모두 EPYC 5세대 기반 인스턴스를 확장하고 있습니다.</p>
+<p><strong>📌 ARM Holdings — CPU 르네상스의 핵심 IP 보유자</strong></p>
+<p>ARM은 최근 인텔 실적 이후 에이전틱 AI의 추론 수요 급증으로 CPU 수요가 폭발하고 있다는 사실이 확인됐고, AMD의 실적이 이를 재차 확인해주며 또 한번 급등했습니다. AMD 매출은 YoY 38% 성장해 103억 달러를 기록했습니다.</p>
+<p>ARM은 최근 회사 역사 최초로 자체 생산 실리콘 제품을 발표했는데, Arm AGI CPU로 AI 데이터센터의 에이전틱 AI 워크로드 처리 전용으로 설계되었습니다.</p>
+<h3>📰 뉴스 주목 종목 (이슈 발생)</h3>
+<p><strong>📌 INTC — 애플 공급망 복귀 가능성</strong><br />
+인텔은 애플이 미국 내 디바이스 메인 칩 생산을 위해 인텔 및 삼성전자와 협의 중이라는 블룸버그 보도에 12.9% 급등하며 S&amp;P 500 당일 최대 상승 종목이 됐습니다. 이는 장기 공급 파트너인 TSMC의 대안 마련 시도로 해석됩니다. 인텔은 4월에만 주가가 3배 이상 상승했습니다.</p>
+<p><strong>📌 SHOP (쇼피파이) — 실적 미스로 역방향</strong><br />
+쇼피파이는 1분기 이익 서프라이즈(EPS $0.36 vs 예상 $0.32)에도 불구하고 15.6% 폭락했는데, 이는 향후 가이던스에 대한 시장의 기대치를 충족하지 못한 것으로 풀이됩니다.</p>
+<hr />
+<h2>📊 공매도·수급</h2>
+<h3>공매도 현황</h3>
+<ul>
+<li>VIX 17선 하락으로 공매도 헤지 수요 급감</li>
+<li>에너지 섹터 내 공매도 포지션은 유가 반등 시 숏-스퀴즈 리스크 존재</li>
+<li>반도체 공매도 세력은 AMD·ARM·SMCI의 잇단 어닝 서프라이즈로 손실 확대 중</li>
+</ul>
+<h3>기관·외국인 수급 동향</h3>
+<ul>
+<li>정보기술 섹터는 4월 한달 동안만 약 20% 상승했으며, AI 성장 펀더멘털이 과거 닷컴 버블(2001년)이나 주택 버블(2008년)과 달리 실질적으로 견고하다는 평가가 우세합니다.</li>
+<li>2026년 4월 말 기준 정보기술 섹터의 S&amp;P 500 내 비중은 35.0%로 1년 전보다 470bp 상승했습니다.</li>
+<li>원화가 강세를 보이면서 외국인 투자 자금의 한국 자산 유입도 증가해 FX 환전 수요가 원화 강세를 추가로 지지했습니다.</li>
+</ul>
+<hr />
+<h2>💡 오늘의 투자 포인트</h2>
+<h3>시나리오별 전략</h3>
+<ul>
+<li>
+<p><strong>강세 시나리오 (확률 55%)</strong>: 오늘 NFP가 시장 예상치(60K) 이하의 낮은 수치로 발표될 경우 → "연준 금리 인하 기대 재점화" → 금리 하락, 달러 약세, 기술·성장주 추가 상승. 더불어 미-이란 합의 문서(MOU) 발표가 뒤따른다면 S&amp;P 500 7,500p 단기 목표도 가시권. 이 경우 반도체(AMD·ARM·NVDA), AI 인프라(SMCI·Dell), 소비재(DIS·UBER) 중심으로 매수 관점.</p>
+</li>
+<li>
+<p><strong>약세 시나리오 (확률 30%)</strong>: NFP가 예상보다 강하게 발표(&gt;100K)될 경우 → 금리 상승 압력 재가동, "더 높이 더 오래(Higher for Longer)" 내러티브 복귀 → 기술주 밸류에이션 부담 부각. 에너지 섹터의 단기 반등도 이란 협상 불발 시 발생 가능. 이 경우 헬스케어·금융·에너지 등 가치주로 단기 로테이션 전술 유효.</p>
+</li>
+<li>
+<p><strong>중립 시나리오 (확률 15%)</strong>: NFP 50~80K로 컨센서스 부합 + 이란 협상 교착 → 시장 횡보. 전일 강한 상승 후 차익실현 매물 출회.</p>
+</li>
+</ul>
+<h3>핵심 요약 (3줄)</h3>
+<ol>
+<li><strong>이란 평화 협상 + 어닝 시즌 쌍끌이</strong>: AMD·ARM·SMCI의 폭발적 어닝 서프라이즈가 AI 인프라 수요의 실질성을 재확인해주었고, 이란 MOU 기대감이 유가를 7% 끌어내려 인플레이션 우려를 누그러뜨렸습니다.</li>
+<li><strong>오늘 NFP가 최대 변수</strong>: 예상치(~60K)를 크게 상·하회하는 결과가 나오면 연준 경로 기대가 급격히 재편되며 단기 변동성이 확대될 수 있습니다. 발표 전후 포지션 관리가 필수입니다.</li>
+<li><strong>한국 증시 오늘 전망</strong>: 원화 강세(-1.17%)와 코스피 전일 사상 최고치 경신(+6.45%) 등 이미 상당 부분 선반영됐으나, 미국 증시 추가 강세 후 ARM·AMD 어닝 호조에 따른 SK하이닉스·삼성전자·HPSP 등 반도체 밸류체인 수혜 기대로 오전장 강세 흐름이 예상됩니다. NFP 전까지는 신중한 접근이 유효합니다.</li>
+</ol>
+<hr />
+<blockquote>
+<p>⚠️ 본 글은 투자 권유가 아닌 정보 제공 목적입니다. 투자 판단의 책임은 본인에게 있습니다. 과거 성과가 미래 수익을 보장하지 않습니다.</p>
+</blockquote>
+<hr />
+<p><em>파일명: 미국증시_2026-05-07.md</em></p>
+    <div class="tv-calendar-wrap">
+  <h2 class="section-label">📅 경제지표 캘린더</h2>
+  <div class="tradingview-widget-container">
+    <div class="tradingview-widget-container__widget"></div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-events.js" async>
+    {
+      "colorTheme": "light",
+      "isTransparent": false,
+      "width": "100%",
+      "height": 400,
+      "locale": "kr",
+      "importanceFilter": "0,1",
+      "countryFilter": "us,kr,jp,cn,eu"
+    }
+    </script>
+  </div>
+</div>
+  </div>
+
+  <footer class="footer">
+    본 글은 정보 제공 목적으로 자동 생성됩니다. 투자 판단의 책임은 본인에게 있습니다.
+  </footer>
+</body>
+</html>

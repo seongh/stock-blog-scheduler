@@ -91,8 +91,8 @@ TV_TICKER = '''<div class="tradingview-widget-container tv-ticker-wrap">
       {"proName":"FOREXCOM:SPXUSD","title":"S&P 500"},
       {"proName":"FOREXCOM:NSXUSD","title":"나스닥 100"},
       {"proName":"DJ:DJI","title":"다우"},
-      {"description":"코스피","proName":"KRX:KOSPI"},
-      {"description":"코스닥","proName":"KRX:KOSDAQ"},
+      {"description":"한국(EWY)","proName":"NYSE:EWY"},
+      {"description":"원/달러","proName":"FX:USDKRW"},
       {"description":"달러/원","proName":"FX:USDKRW"},
       {"description":"달러인덱스","proName":"CAPITALCOM:DXY"},
       {"description":"미 국채(TLT)","proName":"NASDAQ:TLT"},
@@ -148,26 +148,26 @@ CHART_CONFIG = {
         "calendar": True,
     },
     "TOP5": {
-        "title": "📊 한국 시장 실시간 차트",
+        "title": "📊 한국·관련 시장 차트",
         "symbols": [
-            ("KRX:KOSPI",   "#2563eb"),
-            ("KRX:KOSDAQ",  "#7c3aed"),
-            ("FX:USDKRW",   "#059669"),
-            ("KRX:005930",  "#dc2626"),   # 삼성전자
-            ("KRX:000660",  "#d97706"),   # SK하이닉스
-            ("KRX:035420",  "#10b981"),   # NAVER
+            ("NYSE:EWY",        "#2563eb"),   # 코스피 ETF 대용
+            ("FX:USDKRW",       "#7c3aed"),   # 원/달러
+            ("NASDAQ:NVDA",     "#059669"),   # 반도체 대장 (삼성·하이닉스 영향)
+            ("NASDAQ:MU",       "#dc2626"),   # 메모리 반도체 (SK하이닉스 상관)
+            ("FOREXCOM:SPXUSD", "#d97706"),   # 미국 S&P500
+            ("TVC:GOLD",        "#10b981"),   # 금
         ],
         "calendar": False,
     },
     "저녁": {
         "title": "📊 마감 & 프리마켓 차트",
         "symbols": [
-            ("KRX:KOSPI",       "#2563eb"),
+            ("NYSE:EWY",        "#2563eb"),   # 코스피 ETF 대용
             ("FOREXCOM:SPXUSD", "#7c3aed"),
             ("FX:USDKRW",       "#059669"),
-            ("NASDAQ:TLT",         "#dc2626"),
-            ("CAPITALCOM:VIX",   "#d97706"),
-            ("TVC:USOIL",        "#78716c"),
+            ("NASDAQ:TLT",      "#dc2626"),
+            ("CAPITALCOM:VIX",  "#d97706"),
+            ("TVC:USOIL",       "#78716c"),
         ],
         "calendar": True,
     },
@@ -175,10 +175,10 @@ CHART_CONFIG = {
         "title": "📊 글로벌 시장 차트",
         "symbols": [
             ("FOREXCOM:SPXUSD", "#2563eb"),
-            ("KRX:KOSPI",       "#7c3aed"),
+            ("NYSE:EWY",        "#7c3aed"),   # 코스피 ETF 대용
             ("FX:USDKRW",       "#059669"),
-            ("CAPITALCOM:DXY",   "#dc2626"),
-            ("CAPITALCOM:VIX",   "#d97706"),
+            ("CAPITALCOM:DXY",  "#dc2626"),
+            ("CAPITALCOM:VIX",  "#d97706"),
             ("TVC:GOLD",        "#f59e0b"),
         ],
         "calendar": True,

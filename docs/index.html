@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stock Blog — 주식 시황 리포트</title>
+  <style>
+:root {
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --border: #e2e8f0;
+  --text: #1e293b;
+  --muted: #64748b;
+  --accent: #2563eb;
+  --radius: 12px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ── 헤더 ── */
+.site-header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+  position: sticky; top: 0; z-index: 100;
+}
+.header-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: flex; align-items: center; gap: 16px;
+  height: 56px;
+}
+.site-logo { font-size: 20px; font-weight: 700; color: var(--text); }
+.site-logo span { color: var(--accent); }
+
+/* ── 티커 테이프 ── */
+.tv-ticker-wrap {
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+
+/* ── 인덱스 히어로 ── */
+.hero {
+  background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%);
+  color: #fff; padding: 48px 24px 40px;
+  text-align: center;
+}
+.hero h1 { font-size: 28px; font-weight: 800; margin-bottom: 8px; }
+.hero p { font-size: 15px; opacity: 0.85; }
+.stats {
+  display: flex; justify-content: center; gap: 32px; margin-top: 24px;
+}
+.stat { text-align: center; }
+.stat-num { font-size: 26px; font-weight: 700; }
+.stat-label { font-size: 12px; opacity: 0.75; margin-top: 2px; }
+
+.container { max-width: 1100px; margin: 0 auto; padding: 32px 24px; }
+
+/* ── 날짜 섹션 ── */
+.date-section { margin-bottom: 32px; }
+.date-heading {
+  font-size: 13px; font-weight: 600;
+  color: var(--muted); letter-spacing: .05em;
+  text-transform: uppercase; margin-bottom: 12px;
+  padding-bottom: 8px; border-bottom: 1px solid var(--border);
+}
+
+/* ── 포스트 카드 ── */
+.post-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+}
+.post-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  transition: box-shadow .15s, transform .15s;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.post-card:hover {
+  box-shadow: 0 4px 20px rgba(0,0,0,.08);
+  transform: translateY(-2px);
+}
+.post-type {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12px; font-weight: 600;
+  padding: 3px 10px; border-radius: 20px;
+  border: 1px solid; width: fit-content;
+}
+.post-title {
+  font-size: 14px; font-weight: 600;
+  color: var(--text); line-height: 1.4;
+}
+.post-meta { font-size: 12px; color: var(--muted); }
+.read-btn {
+  margin-top: auto;
+  display: inline-block;
+  background: var(--accent); color: #fff;
+  padding: 7px 16px; border-radius: 8px;
+  font-size: 13px; font-weight: 500;
+  text-align: center;
+}
+.read-btn:hover { background: #1d4ed8; text-decoration: none; }
+
+/* ── 포스트 헤더 ── */
+.post-header {
+  background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%);
+  color: #fff; padding: 40px 24px 32px;
+}
+.post-header .breadcrumb {
+  font-size: 13px; opacity: .75; margin-bottom: 12px;
+}
+.post-header h1 { font-size: 24px; font-weight: 800; line-height: 1.35; }
+.post-header .meta {
+  margin-top: 12px; font-size: 13px; opacity: .8;
+  display: flex; gap: 16px; flex-wrap: wrap;
+}
+
+/* ── TradingView 차트 섹션 ── */
+.tv-charts-wrap {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 24px;
+}
+.section-label {
+  max-width: 1100px; margin: 0 auto 16px;
+  font-size: 17px; font-weight: 700; color: var(--text);
+  display: flex; align-items: center; gap: 8px;
+}
+.tv-charts-grid {
+  max-width: 1100px; margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.tv-chart-item {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+
+/* ── 경제달력 섹션 ── */
+.tv-calendar-wrap {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: 24px;
+  margin-top: 32px;
+}
+.tv-calendar-wrap .section-label {
+  margin-bottom: 16px;
+}
+
+/* ── 포스트 본문 ── */
+.article { max-width: 860px; margin: 0 auto; padding: 32px 24px 48px; }
+.article h1 { font-size: 22px; margin: 28px 0 10px; }
+.article h2 {
+  font-size: 19px; margin: 32px 0 10px;
+  padding-bottom: 6px; border-bottom: 2px solid var(--accent);
+}
+.article h3 { font-size: 16px; margin: 20px 0 8px; color: #374151; }
+.article p { margin-bottom: 12px; }
+.article li { margin-left: 22px; margin-bottom: 4px; }
+.article table {
+  width: 100%; border-collapse: collapse;
+  margin: 16px 0; font-size: 14px;
+}
+.article th, .article td {
+  padding: 10px 14px;
+  border: 1px solid var(--border); text-align: left;
+}
+.article th { background: #f1f5f9; font-weight: 600; }
+.article tr:nth-child(even) { background: #f8fafc; }
+.article blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 10px 16px; margin: 16px 0;
+  background: #eff6ff; border-radius: 0 8px 8px 0;
+  color: #1e40af; font-size: 14px;
+}
+.article code {
+  background: #f1f5f9; padding: 2px 6px;
+  border-radius: 4px; font-size: 13px;
+}
+.article pre {
+  background: #1e293b; color: #e2e8f0;
+  padding: 16px; border-radius: 8px;
+  overflow-x: auto; margin: 16px 0;
+}
+.back-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  color: var(--accent); font-size: 14px; font-weight: 500;
+  margin-bottom: 24px;
+}
+.footer {
+  text-align: center; font-size: 12px; color: var(--muted);
+  padding: 24px; border-top: 1px solid var(--border);
+  margin-top: 40px;
+}
+
+@media (max-width: 900px) {
+  .tv-charts-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .tv-charts-grid { grid-template-columns: 1fr; }
+  .post-grid { grid-template-columns: 1fr; }
+  .stats { gap: 20px; }
+  .hero h1 { font-size: 22px; }
+}
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <span class="site-logo">📊 Stock<span>Blog</span></span>
+    </div>
+  </header>
+
+  <div class="tradingview-widget-container tv-ticker-wrap">
+  <div class="tradingview-widget-container__widget"></div>
+  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+  {
+    "symbols": [
+      {"proName":"FOREXCOM:SPXUSD","title":"S&P 500"},
+      {"proName":"FOREXCOM:NSXUSD","title":"나스닥 100"},
+      {"proName":"DJ:DJI","title":"다우"},
+      {"description":"한국(EWY)","proName":"NYSE:EWY"},
+      {"description":"원/달러","proName":"FX:USDKRW"},
+      {"description":"달러/원","proName":"FX:USDKRW"},
+      {"description":"달러인덱스","proName":"CAPITALCOM:DXY"},
+      {"description":"미 국채(TLT)","proName":"NASDAQ:TLT"},
+      {"description":"금","proName":"TVC:GOLD"},
+      {"description":"WTI","proName":"TVC:USOIL"},
+      {"description":"VIX","proName":"CAPITALCOM:VIX"},
+      {"description":"비트코인","proName":"BITSTAMP:BTCUSD"}
+    ],
+    "showSymbolLogo": true,
+    "colorTheme": "light",
+    "isTransparent": false,
+    "displayMode": "adaptive",
+    "locale": "kr"
+  }
+  </script>
+</div>
+
+  <div class="hero">
+    <h1>주식 시황 리포트</h1>
+    <p>매일 아침·오후·저녁 자동 생성되는 증권사급 분석 블로그</p>
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-num">18</div>
+        <div class="stat-label">총 리포트</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">7</div>
+        <div class="stat-label">발행일</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">6</div>
+        <div class="stat-label">일일 스케줄</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    
+        <div class="date-section">
+          <div class="date-heading">2026년 5월 9일 (토)</div>
+          <div class="post-grid">
+            <div class="post-card">
+              <span class="post-type" style="color:#f59e0b;border-color:#f59e0b20;background:#f59e0b10">
+                🌅 주말 아침
+              </span>
+              <div class="post-title">코스피 7,498 역사적 고지 안착 & 미국 S&P 500 6연속 상승 — 다음 주 최대 변수는 '4월 CPI + NVDA 실적'</div>
+              <div class="post-meta">2026년 5월 9일 (토)</div>
+              <a class="read-btn" href="posts/주간마무리_2026-05-09.html">읽기 →</a>
+            </div>
+            <div class="post-card">
+              <span class="post-type" style="color:#10b981;border-color:#10b98120;background:#10b98110">
+                ☀️ 주말 오후
+              </span>
+              <div class="post-title">📈 AI 슈퍼사이클 & 6연속 상승주 마감 — 다음 주 CPI·트럼프-시 정상회담이 판 가른다</div>
+              <div class="post-meta">2026년 5월 9일 (토)</div>
+              <a class="read-btn" href="posts/주말시황_2026-05-09.html">읽기 →</a>
+            </div></div>
+        </div>
+        <div class="date-section">
+          <div class="date-heading">2026년 5월 8일 (금)</div>
+          <div class="post-grid">
+            <div class="post-card">
+              <span class="post-type" style="color:#f59e0b;border-color:#f59e0b20;background:#f59e0b10">
+                🌅 모닝 리포트
+              </span>
+              <div class="post-title">🔥 이란 협상 또 삐걱, S&P 500 -0.38% 하락 마감… 하지만 '탐욕(69)' 유지 — NFP가 오늘 모든 걸 결정한다</div>
+              <div class="post-meta">2026년 5월 8일 (금)</div>
+              <a class="read-btn" href="posts/미국증시_2026-05-08.html">읽기 →</a>
+            </div>
+            <div class="post-card">
+              <span class="post-type" style="color:#10b981;border-color:#10b98120;background:#10b98110">
+                ☀️ 한국 TOP5
+              </span>
+              <div class="post-title">📉 종전 협상 불확실성에 '숨고르기' 진입 — 반도체 차익실현 속 현대차·내수주로 순환매</div>
+              <div class="post-meta">2026년 5월 8일 (금)</div>
+              <a class="read-btn" href="posts/한국증시_TOP5_2026-05-08.html">읽기 →</a>
+            </div>
+            <div class="post-card">
+              <span class="post-type" style="color:#6366f1;border-color:#6366f120;background:#6366f110">
+                🌙 저녁 브리핑
+              </span>
+              <div class="post-title">🔥 장중 7300대 폭락 후 마감 최고치 7498 — "개미 10조 사자"에 코스피가 웃었다</div>
+              <div class="post-meta">2026년 5월 8일 (금)</div>
+              <a class="read-btn" href="posts/저녁시황_2026-05-08.html">읽기 →</a>
+            </div></div>
+        </div>
+        <div class="date-section">
+          <div class="date-heading">2026년 5월 7일 (목)</div>
+          <div class="post-grid">
+            <div class="post-card">
+              <span class="post-type" style="color:#f59e0b;border-color:#f59e0b20;background:#f59e0b10">
+                🌅 모닝 리포트
+              </span>
+              <div class="post-title">📣 S&P 500·나스닥 또 다시 사상 최고치! AMD +18%·디즈니 +7%·이란평화협상 기대감에 시장 폭발 — 7,365·25,839 기록 갱신</div>
+              <div class="post-meta">2026년 5월 7일 (목)</div>
+              <a class="read-btn" href="posts/미국증시_2026-05-07.html">읽기 →</a>
+            </div>
+            <div class="post-card">
+              <span class="post-type" style="color:#10b981;border-color:#10b98120;background:#10b98110">
+                ☀️ 한국 TOP5
+              </span>
+              <div class="post-title">코스피 7500 첫 터치! 반도체 쌍두마차에 외국인 6조 폭탄 매수 — '칠천피'는 그저 시작이었다</div>
+              <div class="post-meta">2026년 5월 7일 (목)</div>
+              <a class="read-btn" href="posts/한국증시_TOP5_2026-05-07.html">읽기 →</a>
+            </div>
+            <div class="post-card">
+              <span class="post-type" style="color:#6366f1;border-color:#6366f120;background:#6366f110">
+                🌙 저녁 브리핑
+              </span>
+              <div class="post-title">🚀 7500피 터치! 외인 역대 최대 매도에도 개인이 지켜낸 코스피 신고가 — 내일 NFP가 변곡점</div>
+              <div class="post-meta">2026년 5월 7일 (목)</div>
+              <a class="read-btn" href="posts/저녁시황_2026-05-07.html">읽기 →</a>
+            </div></div>
+        </div>
+        <div class="date-section">
+          <div class="date-heading">2026년 5월 6일 (수)</div>
+          <div class="post-grid">
+            <div class="post-card">
+              <span class="post-type" style="color:#f59e0b;border-color:#f59e0b20;background:#f59e0b10">
+                🌅 모닝 리포트
+              </span>
+              <div class="post-title">📈 S&P500·나스닥 동반 사상 최고치! 인텔 +13% 폭등·유가 급락이 만든 '쌍끌이' 랠리</div>
+              <div class="post-meta">2026년 5월 6일 (수)</div>
+              <a class="read-btn" href="posts/미국증시_2026-05-06.html">읽기 →</a>
+            </div>
+            <div class="post-card">
+              <span class="post-type" style="color:#10b981;border-color:#10b98120;background:#10b98110">
+                ☀️ 한국 TOP5
+              </span>
+              <div class="post-title">역사가 새로 쓰였다 — '칠천피' 시대 개막, AI 반도체·증권주 폭풍 랠리</div>
+              <div class="post-meta">2026년 5월 6일 (수)</div>
+              <a class="read-btn" href="posts/한국증시_TOP5_2026-05-06.html">읽기 →</a>
+            </div>
+            <div class="post-card">
+              <span class="post-type" style="color:#6366f1;border-color:#6366f120;background:#6366f110">
+                🌙 저녁 브리핑
+              </span>
+              <div class="post-title">🚀 역사가 바뀐 날 — 코스피, 드디어 '칠천피' 시대 개막!</div>
+              <div class="post-meta">2026년 5월 6일 (수)</div>
+              <a class="read-btn" href="posts/저녁시황_2026-05-06.html">읽기 →</a>
+            </div></div>
+        </div>
+        <div class="date-section">
+          <div class="date-heading">2026년 5월 5일 (화)</div>
+          <div class="post-grid">
+            <div class="post-card">
+              <span class="post-type" style="color:#f59e0b;border-color:#f59e0b20;background:#f59e0b10">
+                🌅 모닝 리포트
+              </span>
+              <div class="post-title">🔥 이란 리스크 재점화에 다우 -557pt 급락… 유가 $106 돌파, 10년물 4.44%로 급등</div>
+              <div class="post-meta">2026년 5월 5일 (화)</div>
+              <a class="read-btn" href="posts/미국증시_2026-05-05.html">읽기 →</a>
+            </div>
+            <div class="post-card">
+              <span class="post-type" style="color:#10b981;border-color:#10b98120;background:#10b98110">
+                ☀️ 한국 TOP5
+              </span>
+              <div class="post-title">🚀 코스피 6,936 — 사상 최초 6,900 돌파! '칠천피' 시대의 서막</div>
+              <div class="post-meta">2026년 5월 5일 (화)</div>
+              <a class="read-btn" href="posts/한국증시_TOP5_2026-05-05.html">읽기 →</a>
+            </div>
+            <div class="post-card">
+              <span class="post-type" style="color:#6366f1;border-color:#6366f120;background:#6366f110">
+                🌙 저녁 브리핑
+              </span>
+              <div class="post-title">🚀 칠천피(7,000) 63포인트 앞! SK하이닉스 시총 1,000조 돌파 — 반도체가 역사를 썼다</div>
+              <div class="post-meta">2026년 5월 5일 (화)</div>
+              <a class="read-btn" href="posts/저녁시황_2026-05-05.html">읽기 →</a>
+            </div></div>
+        </div>
+        <div class="date-section">
+          <div class="date-heading">2026년 5월 4일 (월)</div>
+          <div class="post-grid">
+            <div class="post-card">
+              <span class="post-type" style="color:#f59e0b;border-color:#f59e0b20;background:#f59e0b10">
+                🌅 모닝 리포트
+              </span>
+              <div class="post-title">S&P 500·나스닥 사상 최고 마감! 애플 어닝 서프라이즈 + 유가 하락 = 6주 연속 상승 🚀</div>
+              <div class="post-meta">2026년 5월 4일 (월)</div>
+              <a class="read-btn" href="posts/미국증시_2026-05-04.html">읽기 →</a>
+            </div>
+            <div class="post-card">
+              <span class="post-type" style="color:#10b981;border-color:#10b98120;background:#10b98110">
+                ☀️ 한국 TOP5
+              </span>
+              <div class="post-title">🚀 SK하이닉스 시총 1000조 돌파! 반도체 슈퍼사이클이 밀어올린 코스피 6860 신고가</div>
+              <div class="post-meta">2026년 5월 4일 (월)</div>
+              <a class="read-btn" href="posts/한국증시_TOP5_2026-05-04.html">읽기 →</a>
+            </div>
+            <div class="post-card">
+              <span class="post-type" style="color:#6366f1;border-color:#6366f120;background:#6366f110">
+                🌙 저녁 브리핑
+              </span>
+              <div class="post-title">🚀 코스피 6937, '칠천피' 단 63포인트! — 반도체 슈퍼사이클이 쏘아 올린 사상 최고치</div>
+              <div class="post-meta">2026년 5월 4일 (월)</div>
+              <a class="read-btn" href="posts/저녁시황_2026-05-04.html">읽기 →</a>
+            </div></div>
+        </div>
+        <div class="date-section">
+          <div class="date-heading">2026년 5월 3일 (일)</div>
+          <div class="post-grid">
+            <div class="post-card">
+              <span class="post-type" style="color:#f59e0b;border-color:#f59e0b20;background:#f59e0b10">
+                🌅 모닝 리포트
+              </span>
+              <div class="post-title">S&P 500·나스닥 사상 최고가 갱신! 7,230·25,114 — 애플 서프라이즈+이란 평화 기대에 빅테크 질주</div>
+              <div class="post-meta">2026년 5월 3일 (일)</div>
+              <a class="read-btn" href="posts/미국증시_2026-05-03.html">읽기 →</a>
+            </div></div>
+        </div>
+  </div>
+
+  <footer class="footer">
+    본 블로그는 정보 제공 목적으로 자동 생성됩니다. 투자 판단의 책임은 본인에게 있습니다.
+  </footer>
+</body>
+</html>

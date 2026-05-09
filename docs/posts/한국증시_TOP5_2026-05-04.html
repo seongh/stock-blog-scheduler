@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>🚀 SK하이닉스 시총 1000조 돌파! 반도체 슈퍼사이클이 밀어올린 코스피 6860 신고가 — Stock Blog</title>
+  <style>
+:root {
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --border: #e2e8f0;
+  --text: #1e293b;
+  --muted: #64748b;
+  --accent: #2563eb;
+  --radius: 12px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ── 헤더 ── */
+.site-header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+  position: sticky; top: 0; z-index: 100;
+}
+.header-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: flex; align-items: center; gap: 16px;
+  height: 56px;
+}
+.site-logo { font-size: 20px; font-weight: 700; color: var(--text); }
+.site-logo span { color: var(--accent); }
+
+/* ── 티커 테이프 ── */
+.tv-ticker-wrap {
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+
+/* ── 인덱스 히어로 ── */
+.hero {
+  background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%);
+  color: #fff; padding: 48px 24px 40px;
+  text-align: center;
+}
+.hero h1 { font-size: 28px; font-weight: 800; margin-bottom: 8px; }
+.hero p { font-size: 15px; opacity: 0.85; }
+.stats {
+  display: flex; justify-content: center; gap: 32px; margin-top: 24px;
+}
+.stat { text-align: center; }
+.stat-num { font-size: 26px; font-weight: 700; }
+.stat-label { font-size: 12px; opacity: 0.75; margin-top: 2px; }
+
+.container { max-width: 1100px; margin: 0 auto; padding: 32px 24px; }
+
+/* ── 날짜 섹션 ── */
+.date-section { margin-bottom: 32px; }
+.date-heading {
+  font-size: 13px; font-weight: 600;
+  color: var(--muted); letter-spacing: .05em;
+  text-transform: uppercase; margin-bottom: 12px;
+  padding-bottom: 8px; border-bottom: 1px solid var(--border);
+}
+
+/* ── 포스트 카드 ── */
+.post-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+}
+.post-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  transition: box-shadow .15s, transform .15s;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.post-card:hover {
+  box-shadow: 0 4px 20px rgba(0,0,0,.08);
+  transform: translateY(-2px);
+}
+.post-type {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12px; font-weight: 600;
+  padding: 3px 10px; border-radius: 20px;
+  border: 1px solid; width: fit-content;
+}
+.post-title {
+  font-size: 14px; font-weight: 600;
+  color: var(--text); line-height: 1.4;
+}
+.post-meta { font-size: 12px; color: var(--muted); }
+.read-btn {
+  margin-top: auto;
+  display: inline-block;
+  background: var(--accent); color: #fff;
+  padding: 7px 16px; border-radius: 8px;
+  font-size: 13px; font-weight: 500;
+  text-align: center;
+}
+.read-btn:hover { background: #1d4ed8; text-decoration: none; }
+
+/* ── 포스트 헤더 ── */
+.post-header {
+  background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%);
+  color: #fff; padding: 40px 24px 32px;
+}
+.post-header .breadcrumb {
+  font-size: 13px; opacity: .75; margin-bottom: 12px;
+}
+.post-header h1 { font-size: 24px; font-weight: 800; line-height: 1.35; }
+.post-header .meta {
+  margin-top: 12px; font-size: 13px; opacity: .8;
+  display: flex; gap: 16px; flex-wrap: wrap;
+}
+
+/* ── TradingView 차트 섹션 ── */
+.tv-charts-wrap {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 24px;
+}
+.section-label {
+  max-width: 1100px; margin: 0 auto 16px;
+  font-size: 17px; font-weight: 700; color: var(--text);
+  display: flex; align-items: center; gap: 8px;
+}
+.tv-charts-grid {
+  max-width: 1100px; margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.tv-chart-item {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+
+/* ── 경제달력 섹션 ── */
+.tv-calendar-wrap {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: 24px;
+  margin-top: 32px;
+}
+.tv-calendar-wrap .section-label {
+  margin-bottom: 16px;
+}
+
+/* ── 포스트 본문 ── */
+.article { max-width: 860px; margin: 0 auto; padding: 32px 24px 48px; }
+.article h1 { font-size: 22px; margin: 28px 0 10px; }
+.article h2 {
+  font-size: 19px; margin: 32px 0 10px;
+  padding-bottom: 6px; border-bottom: 2px solid var(--accent);
+}
+.article h3 { font-size: 16px; margin: 20px 0 8px; color: #374151; }
+.article p { margin-bottom: 12px; }
+.article li { margin-left: 22px; margin-bottom: 4px; }
+.article table {
+  width: 100%; border-collapse: collapse;
+  margin: 16px 0; font-size: 14px;
+}
+.article th, .article td {
+  padding: 10px 14px;
+  border: 1px solid var(--border); text-align: left;
+}
+.article th { background: #f1f5f9; font-weight: 600; }
+.article tr:nth-child(even) { background: #f8fafc; }
+.article blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 10px 16px; margin: 16px 0;
+  background: #eff6ff; border-radius: 0 8px 8px 0;
+  color: #1e40af; font-size: 14px;
+}
+.article code {
+  background: #f1f5f9; padding: 2px 6px;
+  border-radius: 4px; font-size: 13px;
+}
+.article pre {
+  background: #1e293b; color: #e2e8f0;
+  padding: 16px; border-radius: 8px;
+  overflow-x: auto; margin: 16px 0;
+}
+.back-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  color: var(--accent); font-size: 14px; font-weight: 500;
+  margin-bottom: 24px;
+}
+.footer {
+  text-align: center; font-size: 12px; color: var(--muted);
+  padding: 24px; border-top: 1px solid var(--border);
+  margin-top: 40px;
+}
+
+@media (max-width: 900px) {
+  .tv-charts-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .tv-charts-grid { grid-template-columns: 1fr; }
+  .post-grid { grid-template-columns: 1fr; }
+  .stats { gap: 20px; }
+  .hero h1 { font-size: 22px; }
+}
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="site-logo" href="../index.html">📊 Stock<span>Blog</span></a>
+    </div>
+  </header>
+
+  <div class="tradingview-widget-container tv-ticker-wrap">
+  <div class="tradingview-widget-container__widget"></div>
+  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+  {
+    "symbols": [
+      {"proName":"FOREXCOM:SPXUSD","title":"S&P 500"},
+      {"proName":"FOREXCOM:NSXUSD","title":"나스닥 100"},
+      {"proName":"DJ:DJI","title":"다우"},
+      {"description":"한국(EWY)","proName":"NYSE:EWY"},
+      {"description":"원/달러","proName":"FX:USDKRW"},
+      {"description":"달러/원","proName":"FX:USDKRW"},
+      {"description":"달러인덱스","proName":"CAPITALCOM:DXY"},
+      {"description":"미 국채(TLT)","proName":"NASDAQ:TLT"},
+      {"description":"금","proName":"TVC:GOLD"},
+      {"description":"WTI","proName":"TVC:USOIL"},
+      {"description":"VIX","proName":"CAPITALCOM:VIX"},
+      {"description":"비트코인","proName":"BITSTAMP:BTCUSD"}
+    ],
+    "showSymbolLogo": true,
+    "colorTheme": "light",
+    "isTransparent": false,
+    "displayMode": "adaptive",
+    "locale": "kr"
+  }
+  </script>
+</div>
+
+  <div class="post-header">
+    <div style="max-width:860px;margin:0 auto">
+      <div class="breadcrumb">
+        <a href="../index.html" style="color:#93c5fd">← 목록으로</a>
+      </div>
+      <h1>🚀 SK하이닉스 시총 1000조 돌파! 반도체 슈퍼사이클이 밀어올린 코스피 6860 신고가</h1>
+      <div class="meta">
+        <span>☀️ 한국 TOP5</span>
+        <span>📅 2026년 5월 4일 (월)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="tv-charts-wrap">
+  <h2 class="section-label">📊 한국·관련 시장 차트</h2>
+  <div class="tv-charts-grid"><div class="tv-chart-item"><div class="tradingview-widget-container">
+    <div class="tradingview-widget-container__widget"></div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+    {
+      "symbol": "NYSE:EWY",
+      "width": "100%",
+      "height": 200,
+      "locale": "kr",
+      "dateRange": "1D",
+      "colorTheme": "light",
+      "trendLineColor": "#2563eb",
+      "underLineColor": "#2563eb33",
+      "underLineBottomColor": "rgba(255,255,255,0)",
+      "isTransparent": false,
+      "autosize": true,
+      "largeChartUrl": "https://www.tradingview.com/chart/?symbol=NYSE%3AEWY"
+    }
+    </script>
+  </div></div><div class="tv-chart-item"><div class="tradingview-widget-container">
+    <div class="tradingview-widget-container__widget"></div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+    {
+      "symbol": "FX:USDKRW",
+      "width": "100%",
+      "height": 200,
+      "locale": "kr",
+      "dateRange": "1D",
+      "colorTheme": "light",
+      "trendLineColor": "#7c3aed",
+      "underLineColor": "#7c3aed33",
+      "underLineBottomColor": "rgba(255,255,255,0)",
+      "isTransparent": false,
+      "autosize": true,
+      "largeChartUrl": "https://www.tradingview.com/chart/?symbol=FX%3AUSDKRW"
+    }
+    </script>
+  </div></div><div class="tv-chart-item"><div class="tradingview-widget-container">
+    <div class="tradingview-widget-container__widget"></div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+    {
+      "symbol": "NASDAQ:NVDA",
+      "width": "100%",
+      "height": 200,
+      "locale": "kr",
+      "dateRange": "1D",
+      "colorTheme": "light",
+      "trendLineColor": "#059669",
+      "underLineColor": "#05966933",
+      "underLineBottomColor": "rgba(255,255,255,0)",
+      "isTransparent": false,
+      "autosize": true,
+      "largeChartUrl": "https://www.tradingview.com/chart/?symbol=NASDAQ%3ANVDA"
+    }
+    </script>
+  </div></div><div class="tv-chart-item"><div class="tradingview-widget-container">
+    <div class="tradingview-widget-container__widget"></div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+    {
+      "symbol": "NASDAQ:MU",
+      "width": "100%",
+      "height": 200,
+      "locale": "kr",
+      "dateRange": "1D",
+      "colorTheme": "light",
+      "trendLineColor": "#dc2626",
+      "underLineColor": "#dc262633",
+      "underLineBottomColor": "rgba(255,255,255,0)",
+      "isTransparent": false,
+      "autosize": true,
+      "largeChartUrl": "https://www.tradingview.com/chart/?symbol=NASDAQ%3AMU"
+    }
+    </script>
+  </div></div><div class="tv-chart-item"><div class="tradingview-widget-container">
+    <div class="tradingview-widget-container__widget"></div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+    {
+      "symbol": "FOREXCOM:SPXUSD",
+      "width": "100%",
+      "height": 200,
+      "locale": "kr",
+      "dateRange": "1D",
+      "colorTheme": "light",
+      "trendLineColor": "#d97706",
+      "underLineColor": "#d9770633",
+      "underLineBottomColor": "rgba(255,255,255,0)",
+      "isTransparent": false,
+      "autosize": true,
+      "largeChartUrl": "https://www.tradingview.com/chart/?symbol=FOREXCOM%3ASPXUSD"
+    }
+    </script>
+  </div></div><div class="tv-chart-item"><div class="tradingview-widget-container">
+    <div class="tradingview-widget-container__widget"></div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+    {
+      "symbol": "TVC:GOLD",
+      "width": "100%",
+      "height": 200,
+      "locale": "kr",
+      "dateRange": "1D",
+      "colorTheme": "light",
+      "trendLineColor": "#10b981",
+      "underLineColor": "#10b98133",
+      "underLineBottomColor": "rgba(255,255,255,0)",
+      "isTransparent": false,
+      "autosize": true,
+      "largeChartUrl": "https://www.tradingview.com/chart/?symbol=TVC%3AGOLD"
+    }
+    </script>
+  </div></div></div>
+</div>
+
+  <div class="article">
+    <a class="back-link" href="../index.html">← 전체 목록</a>
+    <h1>🚀 SK하이닉스 시총 1000조 돌파! 반도체 슈퍼사이클이 밀어올린 코스피 6860 신고가</h1>
+<p><strong>2026년 05월 04일 (월요일) | 한국 증시 TOP5 리포트</strong></p>
+<p>미·이란 종전 협상 재개 기대와 애플 어닝 서프라이즈가 글로벌 투자심리를 끌어올리며, 코스피가 장중 4% 이상 급등해 6860선을 돌파하며 사상 최고치를 경신했다. SK하이닉스가 시가총액 1000조원을 처음으로 넘어서고, SK스퀘어는 12%대 폭등하는 등 반도체·AI 밸류체인이 시장을 압도적으로 주도하는 장세다.</p>
+<hr />
+<h2>📊 오늘의 시장 개요</h2>
+<table>
+<thead>
+<tr>
+<th>지수</th>
+<th>현재가 (장중)</th>
+<th>등락</th>
+<th>등락률</th>
+<th>비고</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>코스피</td>
+<td>6,863.44</td>
+<td>+264.57</td>
+<td>+4.01%</td>
+<td>사상 최고치 경신</td>
+</tr>
+<tr>
+<td>코스닥</td>
+<td>1,212.28</td>
+<td>+19.93</td>
+<td>+1.67%</td>
+<td>동반 강세</td>
+</tr>
+</tbody>
+</table>
+<p><strong>오늘 시장 특징</strong>:</p>
+<p>외국인이 2조35억원을 순매수하고 있는 가운데 기관도 1,019억5,000만원을 사들이고 있다. 반면 개인은 2조9,484억원을 순매도하고 있다. 외국인의 대규모 순매수가 지수를 견인하는 구도가 뚜렷하며, 개인은 차익실현 매물을 쏟아내는 전형적인 '외국인 주도 랠리' 양상이다. 반도체를 비롯한 인공지능(AI) 밸류체인 종목 전반에 강한 매수세가 몰리며 사상 최고가 행진을 이어가고 있다. 또한 트럼프 대통령이 유럽산 자동차에 대한 관세를 기존 15%에서 25%로 인상한 가운데 한국산 자동차(15%)에 대한 상대적 수혜 기대가 완성차 업종의 투자심리를 지지했다.</p>
+<hr />
+<h2>💵 오늘의 매크로 환경</h2>
+<table>
+<thead>
+<tr>
+<th>지표</th>
+<th>현재</th>
+<th>전일 대비 / 비고</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>원/달러 환율</td>
+<td>1,472.9원</td>
+<td>▼10.4원 (원화 강세)</td>
+</tr>
+<tr>
+<td>달러인덱스 (DXY)</td>
+<td>98.16</td>
+<td>▲0.01% (보합)</td>
+</tr>
+<tr>
+<td>미 10년 국채 금리</td>
+<td>4.38%</td>
+<td>보합 유지</td>
+</tr>
+<tr>
+<td>한국 기준금리</td>
+<td>2.50%</td>
+<td>7회 연속 동결</td>
+</tr>
+<tr>
+<td>VIX (공포지수)</td>
+<td>16.78</td>
+<td>▼0.65% (안정)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>매크로 영향 분석</strong>:</p>
+<p>원·달러 환율은 전 거래일 주간거래 종가(1,483.3원)보다 10.4원 내린 1,472.9원에 출발했다. 달러 약세와 원화 강세 흐름이 외국인 자금 유입에 우호적 환경을 조성했다. 달러 인덱스가 98 근처에서 거래되고 있으며, 엔화 강세에 따른 전일 급락 이후 보합권에서 안정되고 있다.</p>
+<p>미 10년 국채 금리는 5월 1일 기준 4.38%에서 유지되고 있으며, 지난 한 달간 0.07%p 상승했다. 중동 분쟁 이후 에너지 가격 상승이 인플레이션을 재점화할 수 있다는 우려로 금리가 상승 추세를 보여왔다. 다만 VIX가 16.78로 안정적이어서 글로벌 위험선호 심리가 유지되고 있으며, 이것이 한국 증시로의 외국인 자금 유입을 뒷받침했다.</p>
+<p>한국은행은 2026년 4월 일곱 번째 연속 회의에서 정책 금리를 2.50%로 동결했으며, 신현송 한국은행 총재는 중동 분쟁이 공급 충격을 일으켜 인플레이션과 성장 경로를 복잡하게 만들고 있기 때문에 정책 입안자들이 "신중하고 유연하게" 대처해야 한다고 말했다.</p>
+<hr />
+<h2>🏆 상승률 TOP 5 종목 심층 분석</h2>
+<h3>1. SK스퀘어 (복합기업/반도체 지주) — +12.84%</h3>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>현재가</td>
+<td>약 949,000원 (장중)</td>
+</tr>
+<tr>
+<td>등락률</td>
+<td>+12.84%</td>
+</tr>
+<tr>
+<td>시가총액</td>
+<td>약 110.9조원</td>
+</tr>
+</tbody>
+</table>
+<p><strong>상승 원인 분석</strong></p>
+<blockquote>
+<p>핵심: SK하이닉스 시총 1000조 돌파에 따른 NAV(순자산가치) 급등 + 펀드 편입 규제 대안 투자 수요</p>
+</blockquote>
+<p>SK스퀘어는 자산의 97%가량을 SK하이닉스 지분으로 보유하고 있다. SK하이닉스의 주가 상승이 곧바로 SK스퀘어의 순자산가치(NAV) 개선으로 직결되는 구조다. 이날 SK하이닉스가 9%대 급등하며 시총 1000조원을 돌파하자, SK스퀘어는 이를 레버리지로 활용하며 더 큰 폭으로 상승했다.</p>
+<p>주식형 펀드의 단일 종목 편입 한도(10%) 제한 규정으로 인해, 하이닉스 비중이 비대해진 펀드들이 직접 매수 대신 지주사인 SK스퀘어를 대안으로 선택하고 있어 주가 상승에 힘을 보태고 있다.</p>
+<p><strong>투자자 수급</strong>: 외국인·기관 동반 매수 추정 (SK하이닉스 우회 투자 수요)</p>
+<p><strong>밸류에이션</strong>: 대신증권 김회재 애널리스트는 목표주가를 기존 76만원에서 100만원으로 32% 상향 조정했다. NAV 대비 할인율 타겟을 기존 33%에서 30%로 낮췄다.</p>
+<p><strong>리스크 요인</strong>: SK하이닉스 주가 변동에 대한 베타 과도 노출, NAV 할인율 축소 한계, 반도체 사이클 피크아웃 시 하락 레버리지 위험</p>
+<hr />
+<h3>2. SK하이닉스 (반도체) — +9.02%</h3>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>현재가</td>
+<td>약 1,430,000원 (장중 143만원 터치)</td>
+</tr>
+<tr>
+<td>등락률</td>
+<td>+9.02%</td>
+</tr>
+<tr>
+<td>시가총액</td>
+<td>약 1,000.6조원 (사상 첫 1000조 돌파)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>상승 원인 분석</strong></p>
+<blockquote>
+<p>핵심: AI 메모리 슈퍼사이클 지속 + 삼성전자에 이은 코스피 2번째 시총 1000조 기업 등극</p>
+</blockquote>
+<p>한국거래소에 따르면 SK하이닉스는 5월 4일 오후 장중 143만원까지 오르며 시가총액 1000조6341억원을 기록했다. SK하이닉스는 삼성전자에 이어 코스피 상장사 중 두 번째로 시총 1000조원을 넘어섰다.</p>
+<p>AI 인프라 투자가 글로벌 반도체 수요를 끌어올리면서 기업가치 재평가가 본격화하고 있으며, 특히 고대역폭메모리(HBM)를 중심으로 한 AI 메모리 수요가 범용 D램과 낸드플래시 메모리 가격까지 끌어올리고 있다.</p>
+<p>1분기 실적은 연결 기준 영업이익 37조6103억원, 매출액 52조5763억원을 기록해 영업익과 매출 모두 분기 최대 기록을 썼다. 2026년 SK하이닉스의 영업이익 컨센서스는 연초 77조원에서 최근 165조원까지 상승했다.</p>
+<p><strong>투자자 수급</strong>: 외국인 대규모 순매수 주도</p>
+<p><strong>밸류에이션</strong>: 미래에셋증권은 SK하이닉스에 대한 목표주가를 기존 166만원에서 200만원으로 20% 상향했다.</p>
+<p><strong>리스크 요인</strong>: 수익성이 상대적으로 낮은 6세대 고대역폭 메모리(HBM4)의 매출 비중이 확대되면서 전반적인 수익성이 저하될 수 있다. 노사 갈등, 고점 밸류에이션 부담</p>
+<hr />
+<h3>3. 삼성전자우 (반도체/IT) — +4.80%</h3>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>현재가</td>
+<td>장중 약 +4.80% 상승</td>
+</tr>
+<tr>
+<td>등락률</td>
+<td>+4.80%</td>
+</tr>
+<tr>
+<td>비고</td>
+<td>삼성전자 본주 대비 높은 상승률</td>
+</tr>
+</tbody>
+</table>
+<p><strong>상승 원인 분석</strong></p>
+<blockquote>
+<p>핵심: 삼성전자 본주(+3.74%) 강세에 우선주 프리미엄 확대 + 배당 매력</p>
+</blockquote>
+<p>삼성전자 본주가 반도체 실적 호조에 힘입어 강세를 보이는 가운데, 우선주는 상대적 저평가 인식과 배당 수익률 매력으로 더 큰 폭의 상승을 기록했다. 삼성전자는 2026년 1분기 연결 매출 133조9000억원, 영업이익 57조2000억원을 기록했다. 반도체 사업을 담당하는 DS부문 영업이익만 53조7000억원으로 전체의 대부분을 차지했다.</p>
+<p><strong>밸류에이션</strong>: 글로벌 투자은행 씨티그룹은 삼성전자 목표주가를 기존 32만원에서 30만원으로 하향했으나, 이는 노사 갈등 리스크를 반영한 것으로 업계 전반적 전망은 긍정적이다.</p>
+<p><strong>리스크 요인</strong>: 씨티그룹은 노사 갈등을 최대 리스크로 꼽았으며, 파업이 격화할 경우 대규모 성과급 충당금 설정이 불가피하다고 분석했다.</p>
+<hr />
+<h3>4. 삼성전자 (반도체/IT) — +3.74%</h3>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>현재가</td>
+<td>약 225,000원 (장중)</td>
+</tr>
+<tr>
+<td>등락률</td>
+<td>+3.74%</td>
+</tr>
+<tr>
+<td>시가총액</td>
+<td>약 1,507조원 (세계 12위)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>상승 원인 분석</strong></p>
+<blockquote>
+<p>핵심: 1분기 어닝 서프라이즈 + 글로벌 빅테크 실적 호조 수혜 + 골드만삭스 실적 상향</p>
+</blockquote>
+<p>전거래일 미국 증시는 애플의 호실적과 이란과의 종전 협상 재개 기대가 맞물려 기술주 중심으로 상승했다. 이 훈풍이 한국 반도체 대장주에 직접적으로 전이되었다. 삼성전자의 시가총액은 2026년 5월 현재 약 1조240억달러(약 1507조원)로 세계 12위에 올랐다.</p>
+<p>삼성전자는 고객사들과 다년 구속력 있는 공급계약을 체결했으며, 올해 HBM 매출을 전년 대비 3배 이상 늘릴 계획이다.</p>
+<p><strong>밸류에이션</strong>: 골드만삭스는 2028년 삼성전자 영업이익 495조원 전망을 제시하며 장기 강세 시각 유지</p>
+<p><strong>리스크 요인</strong>: 노사 갈등에 따른 파업 리스크, 고점 밸류에이션 피로감, 범용 메모리 가격 변동성</p>
+<hr />
+<h3>5. 한화에어로스페이스 (방산/항공우주) — +3.21%</h3>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>현재가</td>
+<td>약 1,462,000원 (장중)</td>
+</tr>
+<tr>
+<td>등락률</td>
+<td>+3.21%</td>
+</tr>
+<tr>
+<td>시가총액</td>
+<td>코스피 시총 상위</td>
+</tr>
+</tbody>
+</table>
+<p><strong>상승 원인 분석</strong></p>
+<blockquote>
+<p>핵심: 미·이란 종전 협상 기대 속에서도 방산 수요 구조적 확대 + 1분기 호실적 발표 후 모멘텀 지속</p>
+</blockquote>
+<p>1분기 실적은 매출 약 5조7,510억원, 영업이익 6,389억원으로 증가세를 기록했으며, 항공우주 부문 이익 확대가 전체 실적을 견인한 것으로 나타났다. 한화에어로스페이스는 방산+우주 두 가지 모멘텀을 동시에 누릴 수 있는 종목이다.</p>
+<p>트럼프 미국 대통령이 호르무즈 갇힌 선박을 빼내는 '해방 프로젝트'를 개시한다고 밝혔다. 이는 글로벌 방산 지출 확대의 지속을 시사하며 방산주 투자심리를 뒷받침했다.</p>
+<p><strong>밸류에이션</strong>: 이달 증권사 리포트 목표주가 평균 186만8000원으로, 현 주가 대비 상승 여력 존재</p>
+<p><strong>리스크 요인</strong>: 전쟁 종전 시 방산 모멘텀 약화 가능성, 1분기 실적 선반영 인식으로 매물 출회 가능성, 유증 이슈</p>
+<hr />
+<h2>🏭 섹터별 연결 분석 &amp; 주목 종목</h2>
+<h3>📈 오늘 강세 섹터 &amp; 대표주</h3>
+<p><strong>1. 반도체/AI 밸류체인</strong> — 오늘 시장의 절대적 주도 섹터<br />
+- SK하이닉스(+9.02%), SK스퀘어(+12.84%), 삼성전자(+3.74%), 삼성전자우(+4.80%)<br />
+- 삼성전자·SK하이닉스·삼성전자우의 시가총액 비중이 코스피의 43.1%까지 확대되며 지수를 압도적으로 견인</p>
+<p><strong>2. 광통신/CPO 관련주</strong> — 전력주와 함께 부상<br />
+- 엔비디아가 차세대 GPU에 CPO(공동패키징광학) 기술을 당초 계획보다 5년 앞당겨 도입하기로 하면서 광통신 관련주도 강세 흐름</p>
+<p><strong>3. 완성차</strong> — 관세 반사이익 기대<br />
+- 현대차(+2.45%), 기아 동반 상승. 유럽차 관세 25% 인상 속 한국차(15%) 상대적 수혜 기대</p>
+<h3>📰 뉴스로 주목받는 종목</h3>
+<ul>
+<li>장중 상승 상위: KBI메탈(+30.00%), 오로스테크놀로지(+30.00%), 서울바이오시스(+29.98%), 제룡전기(+29.97%), 선도전기(+29.94%) 등 전력기기·광통신 밸류체인 종목들이 상한가 행진</li>
+<li>국민성장펀드가 AI 스타트업 업스테이지를 2호 지분투자 대상으로 선정하며 AI 밸류체인 전반에 투자 기대 확대</li>
+</ul>
+<h3>섹터별 내일 관심 포인트</h3>
+<ul>
+<li><strong>반도체</strong>: SK하이닉스 시총 1000조 돌파의 심리적 효과 지속 여부, 외국인 추가 순매수 동력 확인</li>
+<li><strong>이차전지</strong>: 독일 배터리 계약 등 수주 소식에 따른 반등 지속 가능성 점검 (LG에너지솔루션 +1.85%)</li>
+<li><strong>AI·SW</strong>: 엔비디아 CPO 앞당김 소식의 국내 부품주 파급효과 지속 모니터링</li>
+<li><strong>바이오</strong>: 삼성바이오로직스(-0.48%)는 약세, 코스닥 바이오 차별화 흐름 주시</li>
+<li><strong>조선·방산</strong>: 미·이란 종전 협상 향방에 따른 방산주 변동성 확대 가능, 조선은 구조적 수주 호조 지속</li>
+</ul>
+<hr />
+<h2>📅 이번 주 주요 일정 (한국·미국)</h2>
+<table>
+<thead>
+<tr>
+<th>날짜</th>
+<th>구분</th>
+<th>이벤트</th>
+<th>시장 영향</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5/4(월)</td>
+<td>한국</td>
+<td>코스피 5월 첫 거래일</td>
+<td>4월 30% 급등 후 5월 첫 주 방향성 탐색</td>
+</tr>
+<tr>
+<td>5/5(화)</td>
+<td>한국</td>
+<td>어린이날 휴장</td>
+<td>-</td>
+</tr>
+<tr>
+<td>5/6(수)</td>
+<td>한국</td>
+<td>대체휴일 휴장</td>
+<td>-</td>
+</tr>
+<tr>
+<td>5/7(목)</td>
+<td>미국</td>
+<td>미 고용지표(신규실업수당청구건수)</td>
+<td>고용시장 건전성 확인</td>
+</tr>
+<tr>
+<td>5/8(금)</td>
+<td>한국</td>
+<td>3월 경상수지 발표</td>
+<td>수출 호조 확인 기대</td>
+</tr>
+<tr>
+<td>5/9(금)</td>
+<td>미국</td>
+<td>미시간대 소비자신뢰지수(5월 예비)</td>
+<td>소비 심리 점검</td>
+</tr>
+<tr>
+<td>5/14(수)</td>
+<td>한국</td>
+<td>SK스퀘어 실적 발표</td>
+<td>SK하이닉스 지분가치 반영 주목</td>
+</tr>
+<tr>
+<td>~5/29</td>
+<td>글로벌</td>
+<td>미·이란 전쟁 90일 시한 도래</td>
+<td>종전/전쟁 재개 분수령</td>
+</tr>
+<tr>
+<td>5/28(수)</td>
+<td>한국</td>
+<td>한국은행 신임 총재 첫 금통위</td>
+<td>금리 방향성 신호 탐색</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>⚠️ <strong>주의</strong>: 5/5~6 한국 증시 휴장으로, 이번 주 실질 거래일은 오늘 포함 3일(월·목·금)에 불과합니다.</p>
+</blockquote>
+<hr />
+<h2>💡 투자 시사점</h2>
+<h3>시나리오별 전략</h3>
+<ul>
+<li><strong>강세 시나리오</strong> (미·이란 종전 합의 진전 + 반도체 2분기 실적 서프라이즈):</li>
+<li>코스피 7,000선 도전 가시권. 골드만삭스는 코스피 전망치를 7천에서 8천으로 높여 잡았다.</li>
+<li>삼성전자·SK하이닉스 추가 상승 여력 30~40%, SK스퀘어 NAV 할인 추가 축소 기대</li>
+<li>
+<p>전략: 반도체 비중 유지 + 방산·조선 등 순환매 수혜 섹터 분산</p>
+</li>
+<li>
+<p><strong>약세 시나리오</strong> (미·이란 협상 결렬 + 유가 재급등 + Fed 매파 강화):</p>
+</li>
+<li>군사적 긴장 완화와 관련한 변수들이 완전히 해소되지 않았기에 시장은 여전히 위험 프리미엄을 내포</li>
+<li>원/달러 환율 1,500원 재돌파 시 외국인 매도 전환 리스크</li>
+<li>전략: 반도체 비중 축소, 방어적 포지션(금융·통신) 확대, 변동성 대비 현금 비중 상향</li>
+</ul>
+<h3>핵심 요약 (3줄)</h3>
+<ol>
+<li><strong>SK하이닉스 시총 1000조 돌파</strong>: AI 메모리 슈퍼사이클이 한국 증시의 구조적 재평가를 주도하며, 코스피 시총의 45%가 반도체 양대장의 직접 영향권에 진입</li>
+<li><strong>외국인 2조원+ 순매수</strong>: 미·이란 종전 기대, 애플 호실적, 달러 약세가 겹치며 외국인 자금이 한국 반도체로 집중 유입</li>
+<li><strong>7,000 가시권, 그러나 리스크 관리 필수</strong>: 반도체 고평가 경고, 노사 갈등, 중동 변수 등 하방 리스크가 상존하므로 분산투자와 리스크 관리가 필수</li>
+</ol>
+<blockquote>
+<p>⚠️ 본 글은 투자 권유가 아닌 정보 제공 목적입니다. 투자 판단의 책임은 본인에게 있습니다.</p>
+</blockquote>
+    
+  </div>
+
+  <footer class="footer">
+    본 글은 정보 제공 목적으로 자동 생성됩니다. 투자 판단의 책임은 본인에게 있습니다.
+  </footer>
+</body>
+</html>
