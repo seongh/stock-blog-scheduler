@@ -19,14 +19,19 @@ except ImportError:
 
 # ── 포스트 타입 분류 ────────────────────────────────────────────────────────
 def get_post_type(filename: str) -> dict:
+    """포스트 타입 분류 + order(정렬 우선순위: 낮을수록 먼저)"""
     if "미국증시" in filename:
-        return {"icon": "🌅", "label": "모닝 리포트", "color": "#f59e0b"}
+        return {"icon": "🌅", "label": "모닝 리포트", "color": "#f59e0b", "order": 0}
+    elif "주간마무리" in filename:
+        return {"icon": "🌅", "label": "주말 아침", "color": "#f59e0b", "order": 0}
     elif "TOP5" in filename:
-        return {"icon": "☀️", "label": "한국 TOP5", "color": "#10b981"}
-    elif "저녁" in filename:
-        return {"icon": "🌙", "label": "저녁 브리핑", "color": "#6366f1"}
+        return {"icon": "☀️", "label": "한국 TOP5", "color": "#10b981", "order": 1}
+    elif "주말시황" in filename:
+        return {"icon": "☀️", "label": "주말 오후", "color": "#10b981", "order": 1}
+    elif "저녁" in filename or "주말저녁" in filename:
+        return {"icon": "🌙", "label": "저녁 브리핑", "color": "#6366f1", "order": 2}
     else:
-        return {"icon": "📊", "label": "리포트", "color": "#64748b"}
+        return {"icon": "📊", "label": "리포트", "color": "#64748b", "order": 9}
 
 
 def extract_title(content: str, fallback: str) -> str:
@@ -456,6 +461,9 @@ def render_index(posts: list) -> str:
             display_date = f"{dt.year}년 {dt.month}월 {dt.day}일 ({weekdays[dt.weekday()]})"
         except Exception:
             display_date = date
+
+        # 같은 날짜 내 포스트를 아침→오후→저녁 순서로 정렬
+        day_posts = sorted(day_posts, key=lambda p: p["type"]["order"])
 
         cards = ""
         for p in day_posts:

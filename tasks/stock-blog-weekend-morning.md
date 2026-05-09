@@ -13,7 +13,7 @@ description: "[주말 🌅 아침] 이번 주 한국·미국 증시 주간 마�
 ## ⚠️ 네트워크 오류 자동 재시도
 WebSearch 오류 시 동일 검색어로 최대 3회 재시도하세요.
 
-## 웹 검색 키워드 — 최소 15회 검색
+## 웹 검색 키워드 — 최소 25회 검색
 
 **주간 성과 (한국):**
 - "이번 주 코스피 주간 등락" / "KOSPI weekly performance this week"
@@ -174,6 +174,18 @@ WebSearch 오류 시 동일 검색어로 최대 3회 재시도하세요.
 - **오늘 주요 이슈**: (#금리인하 #달러강세 #반도체 #AI주식 #실적발표 등)
 - **인기 검색어**: #주식정보 #투자전략 #재테크정보 #오늘주식 #증시전망
 - 어그로 끌 수 있는 트렌드 키워드 적극 활용 (#급등 #폭락 #대박 #주목종목 등)
+
+
+**글로벌 매크로·이슈 (필수 추가 검색):**
+- "Federal Reserve Fed news this week" / "연준 이번 주 동향"
+- "FOMC rate cut probability CME FedWatch"
+- "US China trade war latest" / "미중 무역 분쟁 최신"
+- "geopolitical risk this week" / "지정학 리스크 이번 주"
+- "China economy PMI latest" / "중국 경기 PMI"
+- "ECB BOJ central bank news" / "ECB BOJ 중앙은행"
+- "US CPI inflation latest" / "미국 인플레이션"
+- "WTI Gold Copper price" / "유가 금 구리 가격"
+- "US dollar DXY weekly" / "달러인덱스 주간"
 
 ## 작성 원칙
 - 모든 수치 WebSearch 확인 — 추측 금지
