@@ -1,9 +1,7 @@
 name: "☀️ 평일 오후 - 한국 증시 TOP5"
 
 on:
-  schedule:
-    # 13:03 KST (Mon-Fri) = 04:03 UTC (Mon-Fri)
-    - cron: "3 4 * * 1-5"
+  # 자동 스케줄 비활성화 (비용 절감) — 수동 실행만 가능
   workflow_dispatch:
     inputs:
       dry_run:

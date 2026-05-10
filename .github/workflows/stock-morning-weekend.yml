@@ -1,9 +1,7 @@
 name: "🌅 주말 아침 - 주간 글로벌 시황"
 
 on:
-  schedule:
-    # 07:03 KST (Sat+Sun) = 22:03 UTC (Fri+Sat)
-    - cron: "3 22 * * 5,6"
+  # 자동 스케줄 비활성화 (비용 절감) — 수동 실행만 가능
   workflow_dispatch:
     inputs:
       dry_run:
