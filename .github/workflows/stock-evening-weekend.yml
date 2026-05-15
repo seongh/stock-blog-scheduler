@@ -1,9 +1,7 @@
-name: "🌙 일요일 저녁 - 다음주 투자 전략"
+name: "🌙 주말 저녁 - 다음주 투자 전략"
 
 on:
-  schedule:
-    # 19:09 KST (일요일만) = 10:09 UTC (Sun only)
-    - cron: "9 10 * * 0"
+  # 자동 스케줄 전체 비활성화 (비용 절감) — 수동 실행만 가능
   workflow_dispatch:
     inputs:
       dry_run:

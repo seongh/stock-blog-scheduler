@@ -1,7 +1,9 @@
 name: "🌙 평일 저녁 - 한국 마감 & 미국 프리마켓"
 
 on:
-  # 자동 스케줄 비활성화 (비용 절감) — 수동 실행만 가능
+  schedule:
+    # 19:09 KST (Mon-Fri) = 10:09 UTC (Mon-Fri)
+    - cron: "9 10 * * 1-5"
   workflow_dispatch:
     inputs:
       dry_run:

@@ -1,9 +1,7 @@
 name: "📈 평일 아침 - 미국 증시 브리핑"
 
 on:
-  schedule:
-    # 07:01 KST (Mon-Fri) = 22:01 UTC (Sun-Thu)
-    - cron: "1 22 * * 0-4"
+  # 자동 스케줄 전체 비활성화 (비용 절감) — 수동 실행만 가능
   workflow_dispatch:
     inputs:
       dry_run:

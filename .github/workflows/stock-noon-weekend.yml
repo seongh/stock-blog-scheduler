@@ -1,7 +1,9 @@
 name: "☀️ 주말 오후 - 글로벌 동향 & 섹터 분석"
 
 on:
-  # 자동 스케줄 비활성화 (비용 절감) — 수동 실행만 가능
+  schedule:
+    # 13:03 KST (Sat+Sun) = 04:03 UTC (Sat+Sun)
+    - cron: "3 4 * * 0,6"
   workflow_dispatch:
     inputs:
       dry_run:
