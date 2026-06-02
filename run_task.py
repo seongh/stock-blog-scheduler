@@ -88,7 +88,7 @@ Bash sleep 대신 단순히 재시도하면 됩니다.
     for iteration in range(max_iterations):
         try:
             response = client.messages.create(
-                model="claude-sonnet-4-6",
+                model="claude-opus-4-5",
                 max_tokens=16000,
                 tools=[
                     {
